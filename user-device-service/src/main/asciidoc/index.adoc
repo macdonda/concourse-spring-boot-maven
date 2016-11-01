@@ -1,0 +1,16 @@
+= User Device Service API Guide
+Alan Yost;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toc:levels 4
+:sectlinks:
+
+[[overview]]
+= Overview
+
+
+== Snippets Examples
+
+include::{snippets}/user/curl-request.adoc[]

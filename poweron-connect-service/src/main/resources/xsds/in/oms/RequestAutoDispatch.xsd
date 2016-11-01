@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms"
+    targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="RequestAutoDispatchSchema">
+    <xs:include schemaLocation="../../msg_headers.xsd" />
+    <xs:include schemaLocation="../../user_types.xsd" />
+    <xs:annotation>
+        <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : RequestAutoDispatch.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in/oms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Grid Solutions, 2016
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  12-04-2016	LF	245949	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+    </xs:annotation>
+    <xs:element name="RequestAutoDispatch">
+        <xs:annotation>
+            <xs:documentation>Field engineer has requested to auto-dispatch another skilled Field Engineer to the incident.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="RequestAutoDispatchStc">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="MsgHeader" type="ToNmsMsgHeader">
+                                <xs:annotation>
+                                    <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="MsgBody">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="FromUser" type="UserIdentificationType">
+                                            <xs:annotation>
+                                                <xs:documentation>Name and Personnel Number of the Resource who requested a new Engineer</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="IncidentReference" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>The number of the incident to send. Example: INCD-123-X</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="RequiredAuthorisations" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>List of Authorisations Categories requested for the new engineer</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Item" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="AuthorisationId" type="xs:string">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Resource Authorisation Category ID</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="RequestAutoDispatchTime" type="xs:dateTime">
+                                            <xs:annotation>
+                                                <xs:documentation>Timestamp of the request</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

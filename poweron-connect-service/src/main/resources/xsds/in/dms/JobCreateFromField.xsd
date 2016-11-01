@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (GE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="JobCreateFromFieldSchema">
+  <xs:include schemaLocation="../../msg_headers.xsd"/>
+  <xs:include schemaLocation="../../user_types.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : JobCreateFromField.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in/dms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  06-07-2006	ME	43577	Updated XSD hierarchy
+#*M  09-01-2005	YMC	35971	Wrap MsgHeader and MsgBody into a structure
+#*M				Renamed array 'item' to 'Item'.
+#*M  20-12-2005	SG	35971	Changed xs:int to xs:integer
+#*M		Yambay		
+#*M  13-12-2005	YMC	35971	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="JobHeaderFromFieldType">
+    <xs:all>
+      <xs:element name="JobName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Name of the job.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WorkDescription" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The work that is to be performed.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlannedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The date the job is planned for.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreatedByUser" type="UserIdentificationType">
+        <xs:annotation>
+          <xs:documentation>Who created this job.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreatedByTimestamp" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>When the job was created. If this is not supplied, it will be set to the current time.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="OperationDetailsFromFieldType">
+    <xs:all>
+      <xs:element name="ItemNumber" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>The sequence order of the operation. Begins from 1 and are contiguous. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OperationType" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>The type of operation.The only supported type at the moment is 3 (TEXT_OPERATION).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlantRef" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>If the operation is associated with an asset/plant - this should hold the unique identifier for the plant item. If this is not available, this may be left as blank. All it means is that when a user on the NMS system receives this proposed job, they will need to read the Comments field to determine what plant the operation is associated with.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>For text operations (OperationType = 3), this contains the text. In order for the Control Engineer to create the schedule, it is recommended the following pieces of information are given:
+- Location		e.g. Main Street
+- CircuitDetails	e.g. Oil Switch towards Balfour Place
+- Required action	e.g. Open
+NOTE : Location and Circuit Details do not need to be provided if a PlantRef is specified.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="JobDetailsFromFieldType">
+    <xs:all>
+      <xs:element name="JobHeader" type="JobHeaderFromFieldType"/>
+      <xs:element name="Operations" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The list of operations associated with the job.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Item" type="OperationDetailsFromFieldType" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>An operation.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:element name="JobCreateFromField">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="JobCreateFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="FromUser" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>Who sent the message.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="JobDetails" type="JobDetailsFromFieldType">
+                      <xs:annotation>
+                        <xs:documentation>The details of the proposed job.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms"
+    targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="ResourceLogMessageSchema">
+    <xs:include schemaLocation="../../msg_headers.xsd" />
+    <xs:include schemaLocation="../../job_types.xsd" />
+    <xs:include schemaLocation="../../user_types.xsd" />
+    <xs:annotation>
+        <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : ResourceLogMessage.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/out/oms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2006
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  07-12-2006 DRM     47279	Added Resource Details
+#*M  26-07-2006	ME		44096	Update Comment field to be non-mandatory
+#*M  06-07-2006	ME		43577	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+    </xs:annotation>
+    <xs:element name="ResourceLogMessage">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="ResourceLogMessageStc">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="MsgHeader" type="ToMfsMsgHeader">
+                                <xs:annotation>
+                                    <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="MsgBody">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="ToUser" type="UserIdentificationType">
+                                            <xs:annotation>
+                                                <xs:documentation>Who the incident is being updated to.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="IncidentReference" type="xs:string" />
+                                        <xs:element name="LoggedTime" type="xs:dateTime" />
+                                        <xs:element name="ActualTime" type="xs:dateTime" />
+                                        <xs:element name="Comment" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="NumOnSupply" type="xs:integer" minOccurs="0" />
+                                        <xs:element name="NumOffSupply" type="xs:integer" minOccurs="0" />
+                                        <xs:element name="Category" type="xs:integer" />
+                                        <xs:element name="SubCategory" type="xs:integer" />
+                                        <xs:element name="ResourceSurname" type="xs:string" nillable="true" minOccurs="0" />
+                                        <xs:element name="ResourceForename" type="xs:string" nillable="true" minOccurs="0" />
+                                        <xs:element name="ResourcePMRNumber" type="xs:string" nillable="true" minOccurs="0" />
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

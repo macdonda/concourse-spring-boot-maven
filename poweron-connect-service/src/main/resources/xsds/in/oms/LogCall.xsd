@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms"
+    targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="LogCallSchema">
+    <xs:include schemaLocation="../../msg_headers.xsd" />
+    <xs:include schemaLocation="../../user_types.xsd" />
+    <xs:include schemaLocation="../../job_types.xsd" />
+    <xs:annotation>
+        <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : LogCall.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in/oms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2006
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  02-07-2009	XHH	81676	Added ThirdPartyDetais and DangerFlag
+#*M  06-07-2006	ME	43577	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+    </xs:annotation>
+    <xs:element name="LogCall">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="LogCallStc">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="MsgHeader" type="ToNmsMsgHeader">
+                                <xs:annotation>
+                                    <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="MsgBody">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="FromUser" type="UserIdentificationType" />
+                                        <xs:element name="CallCategory">
+                                            <xs:annotation>
+                                                <xs:documentation>This will be set to a default value for New Jobs </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="4" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="CriticalInformation" type="xs:string" minOccurs="0" />
+                                        <xs:element name="Remarks" type="xs:string" />
+                                        <xs:element name="OperatingZone" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>This will be set to a value that represents Mobile raised calls</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Address" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="PremiseName" minOccurs="0" type="xs:string" />
+                                                    <xs:element name="PremiseStreet" minOccurs="0" type="xs:string" />
+                                                    <xs:element name="PremiseArea" minOccurs="0" type="xs:string" />
+                                                    <xs:element name="PremiseTown" minOccurs="0" type="xs:string" />
+                                                    <xs:element name="PremisePostCode" minOccurs="0" type="xs:string" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ThirdPartyDetails" minOccurs="0" type="ThirdPartyDetailsType" />
+                                        <xs:element name="DangerFlag" minOccurs="0" type="xs:integer" >
+                                            <xs:annotation>
+                                                <xs:documentation>This is to indicate whether there is a potential compliance issue, 1- Yes,0- No </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

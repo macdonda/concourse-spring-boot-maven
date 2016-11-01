@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="LogMessageSchema">
+    <xs:include schemaLocation="../../msg_headers.xsd" />
+    <xs:include schemaLocation="../../user_types.xsd" />
+    <xs:annotation>
+        <xs:documentation>
+      #*M-----------------------------------------------------------------------------
+      #*M                             MODULE HEADER
+      #*M-----------------------------------------------------------------------------
+      #*M
+      #*M        File Name       : LogMessage.xsd
+      #*M
+      #*M        Path            : /users/bin/schemas/mobile/in/oms
+      #*M
+      #*M        Reference       : P006-00-01
+      #*M
+      #*M        (C) Copyright GE Network Reliability Services, 2006
+      #*M
+      #*M-----------------------------------------------------------------------------
+      #*M                         MODULE CHANGE HISTORY
+      #*M-----------------------------------------------------------------------------
+      #*M
+      #*M  DATE       BY      CN      DESCRIPTION
+      #*M  ----       --      --      -----------
+      #*M  14-06-2011 DGK     134692  Removed obselete SPFlag
+      #*M  15-04-2011 MR      131459  Changed ScopeChange to StateChange
+      #*M                             Added Properties to StateChange
+      #*M  19-04-2010 DER    102953   Updated documentation fields
+      #*M  06-01-2009 DGK     97764   Add CompleteFlag
+      #*M  05-10-2007 TNK     55559   Add a missing close tag.
+      #*M  13-09-2007 TNK     54378   Add v4 scope change section.
+      #*M
+      #*M  20-07-2007 DB      53252   Make ActualTime non-mandatory i.e. nillable
+      #*M
+      #*M  08-09-2006 DRM     45231   Make TemplateId optional.
+      #*M
+      #*M  06-07-2006 ME      43577   Initial version
+      #*M
+      #*M-----------------------------------------------------------------------------
+      #*M                          MODULE DESCRIPTION
+      #*M-----------------------------------------------------------------------------
+      #*M
+      #*M
+      #*M
+      #*M-----------------------------------------------------------------------------      
+    </xs:documentation>
+    </xs:annotation>
+    <xs:element name="LogMessage">
+        <xs:annotation>
+            <xs:documentation>Logs a Message from a Mobile Resource and optionally performs Incident Scope Action</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="LogMessageStc">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="MsgHeader" type="ToNmsMsgHeader">
+                                <xs:annotation>
+                                    <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="MsgBody">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="FromUser" type="UserIdentificationType" />
+                                        <xs:element name="IncidentReference" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>The Incident Reference i.e. INCD-12345-K</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ActualTime" type="xs:dateTime" nillable="true" />
+                                        <xs:element name="Comment" type="xs:string" />
+                                        <xs:element name="NumOnSupply" type="xs:integer" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>The number of Customers going On Supply</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="NumOffSupply" type="xs:integer" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>The number of Customers going Off Supply</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Category" type="xs:integer" />
+                                        <xs:element name="SubCategory" type="xs:integer" />
+                                        <xs:element name="TemplateId" type="xs:string" minOccurs="0" />
+                                        <xs:element name="Attributes" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Attribute" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="Name" type="xs:string" />
+                                                                <xs:element name="Value" type="xs:string" />
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="StateChange" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="ChangeLevel" type="xs:integer" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>0 indicates transformer level, 1 feeder, 2 properties. Required unless incident is single premise</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="ActionType" type="xs:integer">
+                                                        <xs:annotation>
+                                                            <xs:documentation>0 is Off action - Specify NumOffSupply. 1 is On action - Specify NumOnSupply</xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="Transformers" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="Transformer" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="TransformerID" type="xs:string" />
+                                                                            <xs:element name="Feeders" minOccurs="0">
+                                                                                <xs:annotation>
+                                                                                    <xs:documentation>Specify the Feeder List if ChangeLevel is 1</xs:documentation>
+                                                                                </xs:annotation>
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="Feeder" maxOccurs="unbounded">
+                                                                                            <xs:complexType>
+                                                                                                <xs:sequence>
+                                                                                                    <xs:element name="FeederNumber" type="xs:string" />
+                                                                                                    <xs:element name="Phases" minOccurs="0">
+                                                                                                        <xs:complexType>
+                                                                                                            <xs:sequence>
+                                                                                                                <xs:element name="Phase" maxOccurs="unbounded">
+                                                                                                                    <xs:complexType>
+                                                                                                                        <xs:sequence>
+                                                                                                                            <xs:element name="PhaseID" type="xs:string" />
+                                                                                                                        </xs:sequence>
+                                                                                                                    </xs:complexType>
+                                                                                                                </xs:element>
+                                                                                                            </xs:sequence>
+                                                                                                        </xs:complexType>
+                                                                                                    </xs:element>
+                                                                                                </xs:sequence>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                    </xs:sequence>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Properties" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>Specify the Property List if ChangeLevel is 2</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="Property" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="ProNumber" type="xs:string" />
+                                                                            <xs:element name="RandomSelection" minOccurs="0" maxOccurs="1" type="xs:boolean" />
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="CompleteFlag" minOccurs="0" type="xs:integer">
+                                            <xs:annotation>
+                                                <xs:documentation>Set to 1 to complete the incident as part of the log message</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

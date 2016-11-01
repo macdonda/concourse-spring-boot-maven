@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (GE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="LogoffSchema">
+  <xs:include schemaLocation="../msg_headers.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : MfsSystemEventMsg.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  06-07-2006	ME	43577	Updated XSD hierarchy
+#*M  27-03-2006	YMC	39882	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="MfsSystemEventMsg">
+    <xs:annotation>
+      <xs:documentation>System event from the Mobile Field System.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="MfsSystemEventMsgStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="EventCode" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>A code for the event.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="EventMsg" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>The event message.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Timestamp" type="xs:dateTime">
+                      <xs:annotation>
+                        <xs:documentation>Datetime that the event occured.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

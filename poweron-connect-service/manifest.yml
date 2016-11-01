@@ -1,0 +1,5 @@
+---
+applications:
+- name: poweron-connect
+  memory: 512M
+  path: target/poweron-connect-service-0.0.1-SNAPSHOT.jar

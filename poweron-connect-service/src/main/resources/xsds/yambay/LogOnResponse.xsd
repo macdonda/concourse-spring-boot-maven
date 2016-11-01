@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="TCSMobile" targetNamespace="TCSMobile" elementFormDefault="qualified">
+
+	<!--xs:include schemaLocation="JobHeaderDataTCS.xsd"/-->
+	<xs:element name="LogOnResponse">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="LogOnResponseStc">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="Timestamp" type="xs:dateTime"/>
+							<xs:element name="Status" type="xs:int"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

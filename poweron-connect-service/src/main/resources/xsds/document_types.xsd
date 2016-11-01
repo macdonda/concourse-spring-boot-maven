@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (Home) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" elementFormDefault="unqualified" attributeFormDefault="unqualified" id="DocumentTypesSchema">
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : document_types.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  30-04-2014 DC    	198505  Added HOFWDetails
+#*M  17-09-2012	TA	163266	Added UpdateDocumentDetailsType
+#*M  10-06-2010 AAFT    107368  Updated document fields to be nillable as they may 
+#*M                             not be sent if SEND_SAFETY_DOC sys param is off.
+#*M  23-04-2010 LS      104478  Updated spelling error in ComponentDescription
+#*M  15-04-2010 AAFT    103483  Added DocumentClass/ClearedBy/DisplayedJobRef and 
+#*M                             changed DocumentRef to DisplayedPermitRef in 
+#*M                             DocumentDetailsType. 
+#*M  01-02-2010	DB	97833	Removed ComponentId from PermitTextType
+#*M  26-01-2010	DB	97825	Removed SubstationName and ComponentDescription
+#*M                             from PermitTextType
+#*M  05-01-2010	DB	96925	Added all remaining fields from PERMITS table
+#*M                             to DocumentDetailsType and added PermitTextType
+#*M                             and PermitTextArrayType
+#*M  02-02-2006	YMC	35971	Added ControlType
+#*M  06-01-2006	YMC	35971	Added DocumentType to DocumentDetailsType
+#*M  11-12-2005	YMC	35971	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="UpdatePermitTextType">
+    <xs:all>
+      <xs:element name="Text" type="xs:string" nillable="true" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A piece of text displayed in a GUI element on a permit/safety document.</xs:documentation>
+        </xs:annotation>
+      </xs:element>          
+      <xs:element name="TextIndex" type="xs:integer" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Unique number identifying a piece of text within a given permit/safety document.</xs:documentation>
+        </xs:annotation>
+      </xs:element>     
+      <xs:element name="TextType" type="xs:integer" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The type of GUI component that shows the text:
+	0 - text_type
+	3 - checkbox, lookup
+	4 - list 
+	  </xs:documentation>
+        </xs:annotation>
+      </xs:element>    
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="UpdatePermitTextArrayType">
+      <xs:sequence>
+        <xs:element name="Item" type="UpdatePermitTextType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+  </xs:complexType> 
+  <xs:complexType name="UpdateDocumentDetailsType">
+    <xs:all>
+      <xs:element name="DisplayedPermitRef" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The human-readable identifier for the document.
+Example : PTW-42-X</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReceiptDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The time at which the document was received.</xs:documentation>
+        </xs:annotation>
+      </xs:element>     
+      <xs:element name="ClearedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The time at which the document was cleared.</xs:documentation>
+        </xs:annotation>
+      </xs:element>      
+      <xs:element name="ReceiptBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the person who received the document.</xs:documentation>
+        </xs:annotation>
+      </xs:element> 		
+      <xs:element name="ClearedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The engineer that signed of on clearance of the network in the document.</xs:documentation>
+        </xs:annotation>													
+      </xs:element>
+      <xs:element name="PermitText" type="UpdatePermitTextArrayType" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The list of permit text items</xs:documentation>
+        </xs:annotation>
+      </xs:element>                                                   	        
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="PermitTextType">
+    <xs:all>
+      <xs:element name="Text" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A piece of text displayed in a GUI element on a permit/safety document.</xs:documentation>
+        </xs:annotation>
+      </xs:element>          
+      <xs:element name="TextIndex" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Unique number identifying a piece of text within a given permit/safety document.</xs:documentation>
+        </xs:annotation>
+      </xs:element>     
+      <xs:element name="TextType" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The type of GUI component that shows the text:
+	0 - text_type
+	1 - label
+	2 - toggle button
+	3 - push button
+	4 - list 
+	  </xs:documentation>
+        </xs:annotation>
+      </xs:element>    
+      <xs:element name="Status" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The status of the permit to which the text belongs.  Possible values are:
+	0 - active
+	1 - archive </xs:documentation>
+        </xs:annotation>
+      </xs:element>                                  
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="HOFWDetailsType">
+    <xs:all>
+      <xs:element name="ControlEngineer" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The control engineer who issued the document.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="FieldEngineer" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The Field / Instruct Engineer who received the HOFW.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="HandOutDate" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The date it was handed out.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="HandBackDate" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The date is was handed back.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	</xs:all>
+  </xs:complexType> 
+  <xs:complexType name="PermitTextArrayType">
+      <xs:sequence>
+        <xs:element name="Item" type="PermitTextType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+  </xs:complexType>              
+   <xs:complexType name="HOFWDetailsArrayType">
+      <xs:sequence>
+        <xs:element name="Item" type="HOFWDetailsType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+  </xs:complexType> 
+  <xs:complexType name="DocumentDetailsType">
+    <xs:all>
+      <xs:element name="DocumentId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The ENMAC internal Id for the document.
+Example : X0000002aPTW</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DisplayedPermitRef" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The human-readable identifier for the document.
+Example : PTW-42-X</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentType" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The type of document.
+Examples:
+	Permit To Work
+	Live Line
+The types are user-definable. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ControlType" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>From an ownership and control perspective, there are 3 types of documents. This control characteristic determines what the Field Engineer can do to progress the document through its life cycle.
+	0 - Not Controllable by Field
+The Field Engineer will have no options to progress the document through its life cycle. For example:- a document that is not involved in the Control Engineer's workflow e.g. Operational Restriction - a 3rd party document e.g. a document from a transmission company.
+	1 - Control Room Controlled
+The progress of the document through its life cycle is controlled by the Control Room. All life cycle transition activated from the PDA are requests. For example, if the Field Engineer is ready for a document to be issued, this will send a 'RequestIssue' to ENMAC, which will generate an alarm to inform the Control Room that a Field Resource is requesting the document to be issued.
+	2 - Field Controlled
+The progress of the document through its life cycle can be controlled by the Field Engineer without Control Room intervention.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentClass" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The class of document. This is also the name of the associated xml config file.
+Examples:
+	 GENERAL_CONSENT - (GENERAL_CONSENT.xml)
+	 PERMIT_TO_WORK - (PERMIT_TO_WORK.xml)
+	 SANCTION_FOR_TEST - (SANCTION_FOR_TEST.xml)
+	  </xs:documentation>
+        </xs:annotation>
+      </xs:element>    
+      <xs:element name="CreatedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The time at which the document was created.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IssuedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The time at which the document was issued.</xs:documentation>
+        </xs:annotation>
+      </xs:element>     
+      <xs:element name="ReceiptDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The time at which the document was received.</xs:documentation>
+        </xs:annotation>
+      </xs:element>     
+      <xs:element name="ClearedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The time at which the document was cleared.</xs:documentation>
+        </xs:annotation>
+      </xs:element>      
+      <xs:element name="CancelledDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The time at which the document was cancelled.</xs:documentation>
+        </xs:annotation>
+      </xs:element> 		
+      <xs:element name="CreatedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the person who created the document.</xs:documentation>
+        </xs:annotation>
+      </xs:element> 		
+      <xs:element name="IssuedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the person who issued the document.</xs:documentation>
+        </xs:annotation>
+      </xs:element> 	
+      <xs:element name="ReceiptBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the person who received the document.</xs:documentation>
+        </xs:annotation>
+      </xs:element> 		
+      <xs:element name="CancelledBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the person who cancelled the document.</xs:documentation>
+        </xs:annotation>
+      </xs:element> 		
+      <xs:element name="Status" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The status of the document.  Possible values are:
+	0 - active
+	1 - archive
+	  </xs:documentation>
+        </xs:annotation>
+      </xs:element> 		
+      <xs:element name="Source" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Stores the permit source, 1 if external.</xs:documentation>
+        </xs:annotation>
+      </xs:element> 	
+      <xs:element name="CurrentState" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The current state of the permit, taken from the action_appearances table, with the help of operations and action_definitions</xs:documentation>
+        </xs:annotation>
+      </xs:element> 		
+      <xs:element name="IssueDay" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The day that the permit was issued on, based on issue_date, and is used for filtering</xs:documentation>
+        </xs:annotation>
+      </xs:element>		
+      <xs:element name="CompleteDay" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The day that the permit was completed on, based on completed date, and is used for filtering</xs:documentation>
+        </xs:annotation>
+      </xs:element>		
+      <xs:element name="Engineer" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The consenting engineer that issued the permit, taken from the operations table</xs:documentation>
+        </xs:annotation>
+      </xs:element>		
+      <xs:element name="ComponentAlias" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The alias of the component that this permit is attached to, taken from the operations table</xs:documentation>
+        </xs:annotation>
+      </xs:element>	
+      <xs:element name="ComponentDescription" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The description of the component that the permit is attached to, taken from theoperations table</xs:documentation>
+        </xs:annotation>													
+      </xs:element>      
+      <xs:element name="Substation" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The substation assocuated with the component that this permit is attached to, taken from the operations table</xs:documentation>
+        </xs:annotation>													
+      </xs:element>      
+      <xs:element name="DocumentCategory" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The catagory of this permit, this field is used for filtering only, taken from the document_class_defn table</xs:documentation>
+        </xs:annotation>													
+      </xs:element>      
+      <xs:element name="PermitSummary" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The summary field of the permit, taken from the permit_text table.</xs:documentation>
+        </xs:annotation>													
+      </xs:element>     
+      <xs:element name="ReferenceCount" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>This is the total number of components which were originally covered by a blanket document.</xs:documentation>
+        </xs:annotation>													
+      </xs:element>      
+      <xs:element name="ActiveCount" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>This is the number of components currently covered by the blanket document.</xs:documentation>
+        </xs:annotation>													
+      </xs:element>
+      <xs:element name="ClearedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The engineer that signed of on clearance of the network in the document.</xs:documentation>
+        </xs:annotation>													
+      </xs:element>
+      <xs:element name="DisplayedJobRef" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The job reference associated with the document.</xs:documentation>
+        </xs:annotation>													
+      </xs:element>      
+      <xs:element name="PermitText" type="PermitTextArrayType" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The list of permit text items</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="HOFWDetails" type="HOFWDetailsArrayType" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The Hand Out For Work document details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

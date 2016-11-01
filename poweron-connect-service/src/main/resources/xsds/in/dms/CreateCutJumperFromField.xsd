@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (GE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="CreateCutJumperFromFieldSchema">
+  <xs:include schemaLocation="../../msg_headers.xsd"/>
+  <xs:include schemaLocation="../../user_types.xsd"/>
+  <xs:include schemaLocation="../../job_types.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : CreateCutJumperFromField.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in/dms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Energy, 2016
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  28-07-2016 MH      255016  Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  Defines the following messages :
+#*M 
+#*M  - CreateCutFromField
+#*M  - CreateJumperFromField
+#*M  - RemoveCutFromField
+#*M  - RemoveJumperFromField
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CutJumperPlacementPosition">
+    <xs:choice>
+      <xs:annotation>
+        <xs:documentation>Either the distance along the connection, or world X/Y values need to be specified</xs:documentation>
+      </xs:annotation>
+      <xs:element name="ConnectionDistance" type="xs:decimal">
+        <xs:annotation>
+          <xs:documentation>Distance along the connection to create the cut / apply the jumper. Specified in percentage (0.0 - 1.0). Defaults to 0.5 if world/x/y not specified.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence>
+        <xs:element name="World" type="xs:int">
+          <xs:annotation>
+            <xs:documentation>The world for which the X/Y is specified</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="X" type="xs:decimal">
+          <xs:annotation>
+            <xs:documentation>X coordinate at which to create the cut / apply the jumper. Must be specified alongside Y if ConnectionDistance not specified</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Y" type="xs:decimal">
+          <xs:annotation>
+            <xs:documentation>Y coordinate at which to create the cut / apply the jumper. Must be specified alongside X if ConnectionDistance not specified</xs:documentation>
+          </xs:annotation>
+        </xs:element> 
+      </xs:sequence>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="CutJumperPlacementDetails">    
+    <xs:all>
+      <xs:element name="Position" type="CutJumperPlacementPosition">
+      </xs:element>
+      <xs:element name="ComponentId" type="xs:string">
+      </xs:element>     
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CutJumperActionDetails">
+    <xs:all>    
+      <xs:element name="ManualTimestamp" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>When the update was actually performed. This might be different from when the update was actually recorded (see SystemTimestamp).
+  NOTE : this field must be filled in and is not populated automatically by the NMS system</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SystemTimestamp" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>When was the update recorded. If this is not provided, then the NMS system will timestamp with the current time.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Comments associated with the update.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrentOperationId" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The operation selected when the operation was created. If not supplied operations will be appended.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InsertMode" type="xs:integer" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The position in the switching log the operation is to be inserted. If not supplied operations will be appended.
+                            0 - INSERT_BEFORE
+                            1 - INSERT_AFTER
+                            2 - INSERT APPEND</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>  
+  <xs:complexType name="CreateCutFromFieldMsgBody">
+    <xs:annotation>
+      <xs:documentation>This is intended as a base MsgBody type for the cut creation message from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="FromUser" type="UserIdentificationType">
+        <xs:annotation>
+          <xs:documentation>Who sent the message.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConnDetails" type="CutJumperPlacementDetails">
+        <xs:annotation>
+          <xs:documentation>Details on the cut point</xs:documentation>
+        </xs:annotation>
+      </xs:element>           
+      <xs:element name="Phases" type="PhaseCode">
+      </xs:element>
+      <xs:element name="ActionDetails" type="CutJumperActionDetails">
+      </xs:element>
+      <xs:element name="JobReference" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The job that this cut should be associated with </xs:documentation>
+        </xs:annotation>
+      </xs:element>      
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CreateJumperFromFieldMsgBody">
+    <xs:annotation>
+      <xs:documentation>This is intended as a base MsgBody type for the jumper creation message from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="FromUser" type="UserIdentificationType">
+        <xs:annotation>
+          <xs:documentation>Who sent the message.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FromConnDetails" type="CutJumperPlacementDetails">
+        <xs:annotation>
+          <xs:documentation>Details on the placement of jumper start point</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ToConnDetails" type="CutJumperPlacementDetails">
+        <xs:annotation>
+          <xs:documentation>Details on the placement of the jumper end point</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ToPhaseA" type="SinglePhaseCode" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The phase from FromConnDetails to be tied to phase A of ToConnDetails. Do not include this element if no connection is made to phase A</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ToPhaseB" type="SinglePhaseCode" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The phase from FromConnDetails to be tied to phase B of ToConnDetails. Do not include this element if no connection is made to phase B</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ToPhaseC" type="SinglePhaseCode" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The phase from FromConnDetails to be tied to phase C of ToConnDetails. Do not include this element if no connection is made to phase C</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActionDetails" type="CutJumperActionDetails">
+      </xs:element>
+      <xs:element name="JobReference" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The job that this jumper should be associated with </xs:documentation>
+        </xs:annotation>
+      </xs:element>      
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="RemoveCutJumperFromFieldMsgBody">
+    <xs:annotation>
+      <xs:documentation>This is intended as a base MsgBody type for the cut / jumper removal messages from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="FromUser" type="UserIdentificationType">
+        <xs:annotation>
+          <xs:documentation>Who sent the message.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ComponentId" type="xs:string">
+      </xs:element>
+      <xs:element name="Phases" type="PhaseCode" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The phases to remove (if removing a cut). Note that if this is not supplied it is assumed that all phases are to be removed. Should not be supplied when removing jumpers</xs:documentation>
+        </xs:annotation>
+      </xs:element>    
+      <xs:element name="ActionDetails" type="CutJumperActionDetails">
+      </xs:element>
+      <xs:element name="JobReference" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The job that this removal should be associated with</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:element name="CreateCutFromField">
+    <xs:annotation>
+      <xs:documentation>Create a cut from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="CreateCutFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="CreateCutFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateJumperFromField">
+    <xs:annotation>
+      <xs:documentation>Create a jumper from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="CreateJumperFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="CreateJumperFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveJumperFromField">
+    <xs:annotation>
+      <xs:documentation>Remove a jumper from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="RemoveJumperFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="RemoveCutJumperFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveCutFromField">
+    <xs:annotation>
+      <xs:documentation>Remove a cut from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="RemoveCutFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="RemoveCutJumperFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

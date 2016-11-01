@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (GE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="OperationMoveSchema">
+  <xs:include schemaLocation="../../msg_headers.xsd"/>
+  <xs:include schemaLocation="../../user_types.xsd"/>
+  <xs:include schemaLocation="../../job_types.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : OperationMove.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/out/dms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  06-07-2006	ME	43577	Update XSD hierarchy
+#*M  13-01-2005	YMC	35971	Made Operations optional
+#*M  12-01-2005	YMC	35971	Changed OperationMoveWithinJob to OperationMove
+#*M  09-01-2005	YMC	35971	Wrap MsgHeader and MsgBody into a structure
+#*M  06-01-2006	YMC	35971	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="OperationMove">
+    <xs:annotation>
+      <xs:documentation>Moves one or more operation within the same job or to a different job.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OperationMoveStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToMfsMsgHeader">
+                <xs:annotation>
+                  <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="ToUser" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>The user to inform about the operation move.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SourceJobNumber" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>The number of the job where the operations are being 'cut' from.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DestJobNumber" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>The number of the job where the operations are being 'pasted' to.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Operations" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>The list of operations to move. This will only be provided if operations are being moved to a different job. If operations are moved within the same job, then the operations are simply renumbered and the details of this are in 'DestRenumberOperations'.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Item" type="OperationDetailsType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DestRenumberOperations" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Array of operations to renumber in the destination job.
+If operations are moved within the same job, this array will also include the operations being moved.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Item" type="OperationRenumberType" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation>An operation.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

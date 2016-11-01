@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (GE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="OperationDeleteSchema">
+  <xs:include schemaLocation="../../msg_headers.xsd"/>
+  <xs:include schemaLocation="../../user_types.xsd"/>
+  <xs:include schemaLocation="../../job_types.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : OperationDelete.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/out/dms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  05-02-2007	DB	47897	Added Group element
+#*M  06-07-2006	ME	43577	Update XSD hierarchy
+#*M  09-01-2005	YMC	35971	Wrap MsgHeader and MsgBody into a structure
+#*M				Renamed array 'item' to 'Item'.
+#*M  13-12-2005	YMC	35971	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="OperationDelete">
+    <xs:annotation>
+      <xs:documentation>Deletes an operation from a job.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OperationDeleteStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToMfsMsgHeader">
+                <xs:annotation>
+                  <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="ToUser" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>The user to inform about the deleted operation.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="OperationId" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>Id of operation to delete.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="JobNumber" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>The number of the job that the operation is being deleted from.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Group" type="xs:integer" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Flag to indicate if this update was part of a group update (1 = group; 0 = singular).</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RenumberOperations" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Array of operations to renumber.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Item" type="OperationRenumberType" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation>An operation.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

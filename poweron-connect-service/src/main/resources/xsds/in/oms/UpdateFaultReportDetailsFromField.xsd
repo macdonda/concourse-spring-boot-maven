@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="UpdateFaultReportDetailsFromFieldSchema">
+    <xs:include schemaLocation="../../msg_headers.xsd"/>
+    <xs:include schemaLocation="../../user_types.xsd"/>
+    <xs:annotation>
+        <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : UpdateFaultReportDetailsFromField.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in/oms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2007
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  18-06-2010 DMK    107962   Add AssociatedReportId to Information
+#*M  08-02-2010 RM      99221   Added LocationsKey and LocationsKeyRef
+#*M  20-01-2010 RM      98336   Add Location, LocationChanges, 
+#*M                             Equipment and EquipmentChanges 
+#*M  15-05-2008 JC      64151   Add Identifier to locations
+#*M  02-04-2008 DH      62000   Add LocationNo to locations
+#*M  01-03-2008 DH      60552   Add ResourceComment to information
+#*M  27-02-2008 YG      60709   Add "FaultSide" under "DamagedComponents"
+#*M 
+#*M  15-01-2008 YG      58707   Updated &quot;RepairBy&quot; type
+#*M
+#*M  05-12-2007 AAFT    57432   Updated XSD tags
+#*M  14-11-2007	AAFT	56600	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+    </xs:annotation>
+    <xs:element name="UpdateFaultReportDetailsFromField">
+        <xs:annotation>
+            <xs:documentation>A Field Engineer has updated a fault report.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="UpdateFaultReportDetailsFromFieldStc">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="MsgHeader" type="ToNmsMsgHeader">
+                                <xs:annotation>
+                                    <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="MsgBody">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="DamagedComponents" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Item" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="ActionTaken" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="ComponentNumber" type="xs:integer" minOccurs="1"/>
+                                                                <xs:element name="ConditionCode" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="CustomerCanBeCharged" type="xs:integer" minOccurs="0"/>
+                                                                <xs:element name="CustomerChargeReference" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="DamagedComponent" type="xs:string" minOccurs="0"/>
+								<xs:element name="FaultSide" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="FollowUpRepairRequired" type="xs:integer" minOccurs="0"/>
+                                                                <xs:element name="Identifier" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="LocationId" type="xs:string" minOccurs="0">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Refers to "Locations(LocationId)"</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
+                                                                <xs:element name="Phase" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="RepairBy" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="TypeCode" type="xs:string" minOccurs="0"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="FromUser" type="UserIdentificationType"/>
+                                        <xs:element name="Information" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="FatalityFlag" type="xs:integer" minOccurs="0"/>
+                                                    <xs:element name="InjuryFlag" type="xs:integer" minOccurs="0"/>
+                                                    <xs:element name="ResourceComment" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="AssociatedReportId" type="xs:string" minOccurs="0"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="InformationChanges" type="xs:integer" minOccurs="0"/>
+                                        <xs:element name="Locations" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Item" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="GpsLatitude" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="GpsLongitude" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="LocationId" type="xs:string" minOccurs="1"/>								
+                                                                <xs:element name="LocationNo" type="xs:integer" minOccurs="0"/>								
+                                                                <xs:element name="Identifier" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="Name" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="ResourceComment" type="xs:string" minOccurs="0"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="Reason" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Cause" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="CauseGroup" type="xs:string" minOccurs="0"/>
+                                                    <xs:element name="PartyResponsible" type="xs:string" minOccurs="0"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ReasonChanges" type="xs:integer" minOccurs="0"/>
+                                        <xs:element name="ReportRef" type="xs:string" minOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation>The fault report ref updated Example: FREP-123-X </xs:documentation>
+                                            </xs:annotation>                                                                                                                            
+                                        </xs:element>				
+                                        <xs:element name="Location" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Locality" type="xs:string" minOccurs="0" />
+                                                    <xs:element name="LocationText" type="xs:string" minOccurs="0" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="LocationChanges" type="xs:integer" minOccurs="0" />
+                                        <xs:element name="Equipment" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="EquipmentDetails1" type="xs:string" minOccurs="0" />
+                                                    <xs:element name="EquipmentDetails2" type="xs:string" minOccurs="0" />
+                                                    <xs:element name="MainEquipment" type="xs:string" minOccurs="0" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="EquipmentChanges" type="xs:integer" minOccurs="0" />
+                                    </xs:all>
+                                </xs:complexType>
+
+                            <!-- DamagedComponents(LocationId) references Locations(LocationId) -->
+                            <xs:key name="LocationsKey">
+                                <xs:selector xpath="./Locations/Item"/>
+                                <xs:field xpath="LocationId"/>
+                            </xs:key>
+                            <xs:keyref name="LocationsKeyRef" refer="LocationsKey">
+                                <xs:selector xpath="./DamagedComponents/Item"/>
+                                <xs:field xpath="LocationId"/>
+                            </xs:keyref>
+
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

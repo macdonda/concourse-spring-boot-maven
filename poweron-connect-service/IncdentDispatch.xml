@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+   <soap:Header>
+      <Age>0</Age>
+      <Time>2016-10-03T15:32:45</Time>
+      <NmsGroupName>SPEN</NmsGroupName>
+      <Id>J0029ca5fc8fbe0c1d98e4J000039cb</Id>
+      <TimeToLive>600</TimeToLive>
+      <Function>IncidentDispatch</Function>
+      <Timestamp>2016-10-03T15:32:45.550212+01:00</Timestamp>
+      <TxnSource>0</TxnSource>
+      <EntityID>c8fbe0c1d98e4cad92ba7afb7e7fd16f</EntityID>
+      <Endpoint>c8fbe0c1d98e4cad92ba7afb7e7fd16f</Endpoint>
+      <Sequence>18518285</Sequence>
+      <Transport>SOAP5</Transport>
+   </soap:Header>
+   <soap:Body>
+      <ENMAC:IncidentDispatch xmlns:ENMAC="http://www.ge.com/energy/enmac/mobile/nms">
+         <IncidentDispatchStc>
+            <MsgBody>
+               <TCSJobDetails>
+                  <Calls>
+                     <Item>
+                        <CallCategory>No Supply (Network)</CallCategory>
+                        <CallFirstLoggedTime>2016-09-29T20:51:31.234753+01:00</CallFirstLoggedTime>
+                        <CallLastUpdatedTime>2016-09-29T20:52:48.216272+01:00</CallLastUpdatedTime>
+                        <CallReference>CALL-1734-J</CallReference>
+                        <CriticalInformation>ttt</CriticalInformation>
+                        <CustomerCriticalInfo>ttt</CustomerCriticalInfo>
+                        <CustomerGPSEasting>450100</CustomerGPSEasting>
+                        <CustomerGPSNorthing>650100</CustomerGPSNorthing>
+                        <CustomerInitials>J</CustomerInitials>
+                        <CustomerLVFeeder>42</CustomerLVFeeder>
+                        <CustomerNMI>1800053580646</CustomerNMI>
+                        <CustomerNetworkStatus>Connected</CustomerNetworkStatus>
+                        <CustomerPhoneNumbers>01415521446</CustomerPhoneNumbers>
+                        <CustomerRetailStatus>Connected</CustomerRetailStatus>
+                        <CustomerSurname>NICHOLAS</CustomerSurname>
+                        <CustomerTitle>MR</CustomerTitle>
+                        <CustomerTransformerName>TX</CustomerTransformerName>
+                        <CustomerTransformerNumber>14375892U</CustomerTransformerNumber>
+                        <HasCriticalInfo>1</HasCriticalInfo>
+                        <IsSensitive>0</IsSensitive>
+                        <MeterPhase>A</MeterPhase>
+                     </Item>
+                     <Item>
+                        <CallCategory>No Supply (Network)</CallCategory>
+                        <CallFirstLoggedTime>2016-09-29T20:51:31.234753+01:00</CallFirstLoggedTime>
+                        <CallLastUpdatedTime>2016-09-29T20:52:48.216272+01:00</CallLastUpdatedTime>
+                        <CallReference>CALL-1735-J</CallReference>
+                        <CustomerGPSEasting>450100</CustomerGPSEasting>
+                        <CustomerGPSNorthing>650100</CustomerGPSNorthing>
+                        <CustomerInitials>I</CustomerInitials>
+                        <CustomerLVFeeder>42</CustomerLVFeeder>
+                        <CustomerNMI>1800053580707</CustomerNMI>
+                        <CustomerNetworkStatus>Connected</CustomerNetworkStatus>
+                        <CustomerRemarks>rest</CustomerRemarks>
+                        <CustomerRetailStatus>Connected</CustomerRetailStatus>
+                        <CustomerSurname>HADJIHAMBI</CustomerSurname>
+                        <CustomerTitle>MR</CustomerTitle>
+                        <CustomerTransformerName>TX</CustomerTransformerName>
+                        <CustomerTransformerNumber>14375892U</CustomerTransformerNumber>
+                        <HasCriticalInfo>0</HasCriticalInfo>
+                        <IsSensitive>0</IsSensitive>
+                        <MeterPhase>A</MeterPhase>
+                        <Postcode>postc</Postcode>
+                        <PremiseName>15</PremiseName>
+                        <PremiseNumber>10</PremiseNumber>
+                        <Street>street</Street>
+                     </Item>
+                  </Calls>
+                  <FaultReportDetails>
+                     <ArrivalDate>2016-09-29T16:11:10.000000+01:00</ArrivalDate>
+                     <AutomationCiCount>0</AutomationCiCount>
+                     <Cause>88</Cause>
+                     <CauseDesc>PESC Equipment Affected by National Grid Company Personnel or Equipment</CauseDesc>
+                     <CauseGroup>E</CauseGroup>
+                     <CauseGroupDesc>National Grid Company</CauseGroupDesc>
+                     <CircuitMonitoringRef>554|14</CircuitMonitoringRef>
+                     <Component>4</Component>
+                     <ComponentDesc>Heat Shrink termination - Pole-mounted</ComponentDesc>
+                     <ComponentGroup>UG</ComponentGroup>
+                     <ComponentGroupDesc>Underground Cables &amp; Surface Wiring</ComponentGroupDesc>
+                     <ControlEngineer>Grant Mbewe</ControlEngineer>
+                     <DelayDuration>0</DelayDuration>
+                     <DispatchDate>2016-09-29T16:11:06.000000+01:00</DispatchDate>
+                     <Duration>+000000003 18:08:11.000000</Duration>
+                     <EquipmentDetails1>65</EquipmentDetails1>
+                     <EquipmentDetails1Desc>Street feeder pillar</EquipmentDetails1Desc>
+                     <ExclusionFlag>0</ExclusionFlag>
+                     <FatalityFlag>0</FatalityFlag>
+                     <FeederName>INGRAM ST 149</FeederName>
+                     <FeederRef>14</FeederRef>
+                     <FirstDispatchedEngineer>MBEWE, GRANT</FirstDispatchedEngineer>
+                     <FirstOpOnSite>MBEWE, GRANT</FirstOpOnSite>
+                     <FirstRestDate>2016-09-29T20:51:10.000000+01:00</FirstRestDate>
+                     <IncCategoryDesc>Underground Fault LV incident</IncCategoryDesc>
+                     <IncCategoryId>LUGF</IncCategoryId>
+                     <IncidentRef>INCD-14795-J</IncidentRef>
+                     <InjuryFlag>0</InjuryFlag>
+                     <InterruptionDate>2016-09-29T20:49:00.000000+01:00</InterruptionDate>
+                     <LinePatrolReq>0</LinePatrolReq>
+                     <LocalOffice>Glasgow</LocalOffice>
+                     <LvConnectFlag>0</LvConnectFlag>
+                     <MainEquipment>60</MainEquipment>
+                     <MainEquipmentDesc>Switchgear/fusegear (excluding service cut-outs)</MainEquipmentDesc>
+                     <NetworkAbnormalFlag>0</NetworkAbnormalFlag>
+                     <NoOfFeeders>0</NoOfFeeders>
+                     <OperatingZone>GLASGOW NORTH</OperatingZone>
+                     <OverheadFlag>0</OverheadFlag>
+                     <ReplacementFlag>0</ReplacementFlag>
+                     <ReportCi>0</ReportCi>
+                     <ReportCml>0</ReportCml>
+                     <ReportComment>test</ReportComment>
+                     <ReportCreationDate>2016-09-29T16:08:51.639756+01:00</ReportCreationDate>
+                     <ReportDescription>INGRAM ST 149 GM S/S, LOCAL TRANSFORMER Tx</ReportDescription>
+                     <ReportOpComplete>0</ReportOpComplete>
+                     <ReportReceivedDate>2016-09-29T20:49:00.000000+01:00</ReportReceivedDate>
+                     <ReportRef>FREP-17537-J</ReportRef>
+                     <ReportRegComplete>0</ReportRegComplete>
+                     <ReportRi>0</ReportRi>
+                     <ReportStartDate>2016-09-29T20:49:00.000000+01:00</ReportStartDate>
+                     <ReportType>LV Fault</ReportType>
+                     <RestorationAffectedTransformersList>
+                        <Item>
+                           <ComponentAlias>14375892U</ComponentAlias>
+                           <ReportRef>FREP-17537-J</ReportRef>
+                           <StageNo>3</StageNo>
+                           <TransformerName>INGRAM ST 149TX</TransformerName>
+                           <TransformerNumber>56656 | T1 | | 12 | 1000 |</TransformerNumber>
+                        </Item>
+                        <Item>
+                           <ComponentAlias>14375892U</ComponentAlias>
+                           <ReportRef>FREP-17537-J</ReportRef>
+                           <StageNo>1</StageNo>
+                           <TransformerName>INGRAM ST 149TX</TransformerName>
+                           <TransformerNumber>56656 | T1 | | 12 | 1000 |</TransformerNumber>
+                        </Item>
+                        <Item>
+                           <ComponentAlias>14375892U</ComponentAlias>
+                           <ReportRef>FREP-17537-J</ReportRef>
+                           <StageNo>2</StageNo>
+                           <TransformerName>INGRAM ST 149TX</TransformerName>
+                           <TransformerNumber>56656 | T1 | | 12 | 1000 |</TransformerNumber>
+                        </Item>
+                     </RestorationAffectedTransformersList>
+                     <SecondaryFeeder>42</SecondaryFeeder>
+                     <SecondarySub>INGRAM ST 149 GM S/S</SecondarySub>
+                     <ServiceFaultFlag>0</ServiceFaultFlag>
+                     <SiFlag>0</SiFlag>
+                     <Status>0</Status>
+                     <Substation>ROTTENROW</Substation>
+                     <SubstationRef>ROTTENROW PRIMARY</SubstationRef>
+                     <ThirdPartyDamage>0</ThirdPartyDamage>
+                     <Transformer>T1</Transformer>
+                     <Voltage>LV</Voltage>
+                     <VoltageDesc>LV</VoltageDesc>
+                     <VoltageGroup>LV</VoltageGroup>
+                     <VoltageGroupDesc>Low Voltage</VoltageGroupDesc>
+                  </FaultReportDetails>
+                  <LogMessages>
+                     <Item>
+                        <ActualTime>2016-09-29T16:08:51.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>Incident 'INCD-14795-J' raised
+by Dispatcher 'Grant Mbewe'</Comment>
+                        <LoggedTime>2016-09-29T16:08:51.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <SubCategory>-1</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:11:10.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Arrival On Site Time set to '29-SEP 16:11'
+The resource Grant Mbewe has Arrived On Site.</Comment>
+                        <LoggedTime>2016-09-29T16:10:47.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-1</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:15:10.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>The resource Grant Mbewe has left site.  Reason: Starting another job</Comment>
+                        <LoggedTime>2016-09-29T16:14:47.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-2</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:15:19.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! Escalation Alarm 1  6 Hrs) sent to mobile resource 'Mbewe, Grant' for acknowledgement</Comment>
+                        <LoggedTime>2016-09-29T16:15:19.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:15:51.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! Escalation Alarm 1  6 Hrs) acknowledged by 'Grant Mbewe' at '2016-09-29T16:15:51.000+01:00'</Comment>
+                        <LoggedTime>2016-09-29T16:15:28.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-29T00:00:00.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>ETR set to '29-OCT 00:00' by Grant Mbewe
+test</Comment>
+                        <LoggedTime>2016-09-29T16:16:02.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <SubCategory>1001</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:19:18.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! Escalation Alarm 2  10 Hrs. Evoke Customer Contact Plan 1) sent to mobile resource 'Mbewe, Grant' for acknowledgement</Comment>
+                        <LoggedTime>2016-09-29T16:19:18.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:20:23.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! Escalation Alarm 2  10 Hrs. Evoke Customer Contact Plan 1) acknowledged by 'Grant Mbewe' at '2016-09-29T16:20:23.000+01:00'</Comment>
+                        <LoggedTime>2016-09-29T16:20:01.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:22:18.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! Escalation Alarm 3   13 Hrs) sent to mobile resource 'Mbewe, Grant' for acknowledgement</Comment>
+                        <LoggedTime>2016-09-29T16:22:18.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:25:34.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! Escalation Alarm 3   13 Hrs) acknowledged by 'Grant Mbewe' at '2016-09-29T16:25:34.000+01:00'</Comment>
+                        <LoggedTime>2016-09-29T16:25:12.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:25:18.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : IMMINENT ! GS2 Breach Imminent. 16Hrs. Evoke Customer Contact Plan 2.) sent to mobile resource 'Mbewe, Grant' for acknowledgement</Comment>
+                        <LoggedTime>2016-09-29T16:25:18.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T16:26:19.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : IMMINENT ! GS2 Breach Imminent. 16Hrs. Evoke Customer Contact Plan 2.) acknowledged by 'Grant Mbewe' at '2016-09-29T16:26:19.000+01:00'</Comment>
+                        <LoggedTime>2016-09-29T16:25:56.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:45:10.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>Incident Category changed from 'Unknown' to
+'LV UG Fault'
+by Dispatcher 'Grant Mbewe'</Comment>
+                        <LoggedTime>2016-09-29T20:45:10.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <SubCategory>-13</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:45:10.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>Incident Description changed to
+'INGRAM ST 149 GM S/S, LOCAL TRANSFORMER Tx ---'
+by Dispatcher 'Grant Mbewe'</Comment>
+                        <LoggedTime>2016-09-29T20:45:10.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <SubCategory>-13</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:45:10.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>Incident Comment changed to
+'test ---'
+by Dispatcher 'Grant Mbewe'</Comment>
+                        <LoggedTime>2016-09-29T20:45:10.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <SubCategory>-13</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T22:48:00.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Estimated Time Of Arrival set to '29-SEP 22:48'</Comment>
+                        <LoggedTime>2016-09-29T20:46:43.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>0</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T23:46:00.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Estimated Time Of Arrival set to '29-SEP 23:46'
+Status update from Grant Mbewe. Comment: bad traffic</Comment>
+                        <LoggedTime>2016-09-29T20:47:08.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>0</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:47:41.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Arrival On Site Time set to '29-SEP 20:47'
+The resource Grant Mbewe has Arrived On Site.</Comment>
+                        <LoggedTime>2016-09-29T20:47:19.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-1</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-30T23:48:00.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>ETR set to '30-SEP 23:48' by &lt;unknown&gt;
+far into the future</Comment>
+                        <LoggedTime>2016-09-29T20:47:52.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>1001</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:48:34.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Jointer</Comment>
+                        <LoggedTime>2016-09-29T20:48:14.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>5</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:48:00.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>test</Comment>
+                        <LoggedTime>2016-09-29T20:48:33.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <SubCategory>68</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:49:00.000000+01:00</ActualTime>
+                        <Category>3</Category>
+                        <Comment>5 off</Comment>
+                        <LoggedTime>2016-09-29T20:49:14.000000+01:00</LoggedTime>
+                        <NumOffSupply>5</NumOffSupply>
+                        <SubCategory>0</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:51:10.000000+01:00</ActualTime>
+                        <Category>3</Category>
+                        <Comment>A partial count of 5 customers on the feeder were randomly selected from the Mobile. 500A Fuse - Unit
+
+
+
+5 back on</Comment>
+                        <LoggedTime>2016-09-29T20:51:01.000000+01:00</LoggedTime>
+                        <NumOnSupply>5</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>6</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:52:06.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>Critical Info for call 'CALL-1734-J'
+changed by Operator 'Grant Mbewe'</Comment>
+                        <LoggedTime>2016-09-29T20:52:06.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <SubCategory>-13</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:52:48.000000+01:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>Remarks for call 'CALL-1735-J'
+changed by Operator 'Grant Mbewe'</Comment>
+                        <LoggedTime>2016-09-29T20:52:48.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <SubCategory>-13</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:54:15.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Completion Time set to '29-SEP 20:54'
+The Resource Grant Mbewe is finished on site. complete Finished on Site - Job Complete</Comment>
+                        <LoggedTime>2016-09-29T20:54:00.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-4</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:55:17.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Arrival On Site Time set to '29-SEP 20:55'
+The resource Grant Mbewe has Arrived On Site.</Comment>
+                        <LoggedTime>2016-09-29T20:54:54.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-1</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-09-29T20:55:28.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>The resource Grant Mbewe has left site.  Reason: Leaving to collect generator Comment: u</Comment>
+                        <LoggedTime>2016-09-29T20:55:11.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-2</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:52:53.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 7 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T14:52:53.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:53:52.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 7 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T14:53:52.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:54:12.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Arrival On Site Time set to '03-OCT 14:54'
+The resource Grant Mbewe User 2 has Arrived On Site.</Comment>
+                        <LoggedTime>2016-10-03T14:53:54.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-1</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:54:18.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 7 custs off supply) acknowledged by 'Grant Mbewe User 2' at '2016-10-03T14:54:18.000+01:00'</Comment>
+                        <LoggedTime>2016-10-03T14:54:00.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:54:34.000000+01:00</ActualTime>
+                        <Category>3</Category>
+                        <Comment>A partial count of 4 customers on the feeder were randomly selected from the Mobile. test 4 off</Comment>
+                        <LoggedTime>2016-10-03T14:54:48.000000+01:00</LoggedTime>
+                        <NumOffSupply>4</NumOffSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>27</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:54:52.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 7 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T14:54:52.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:55:16.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 7 custs off supply) acknowledged by 'Grant Mbewe User 2' at '2016-10-03T14:55:16.000+01:00'</Comment>
+                        <LoggedTime>2016-10-03T14:54:58.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:55:52.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 7 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T14:55:52.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:56:17.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 7 custs off supply) acknowledged by 'Grant Mbewe User 2' at '2016-10-03T14:56:17.000+01:00'</Comment>
+                        <LoggedTime>2016-10-03T14:55:59.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:56:22.000000+01:00</ActualTime>
+                        <Category>3</Category>
+                        <Comment>2 back on</Comment>
+                        <LoggedTime>2016-10-03T14:56:12.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>6</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:56:44.000000+01:00</ActualTime>
+                        <Category>3</Category>
+                        <Comment>A partial count of 2 customers on the feeder were randomly selected from the Mobile. 2 back on</Comment>
+                        <LoggedTime>2016-10-03T14:56:34.000000+01:00</LoggedTime>
+                        <NumOnSupply>2</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>6</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:56:52.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 5 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T14:56:52.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:57:11.000000+01:00</ActualTime>
+                        <Category>3</Category>
+                        <Comment>A partial count of 2 customers on the feeder were randomly selected from the Mobile. all back on (2 more)</Comment>
+                        <LoggedTime>2016-10-03T14:57:13.000000+01:00</LoggedTime>
+                        <NumOnSupply>2</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>5</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:57:32.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 5 custs off supply) acknowledged by 'Grant Mbewe User 2' at '2016-10-03T14:57:32.000+01:00'</Comment>
+                        <LoggedTime>2016-10-03T14:57:14.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:57:53.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T14:57:53.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T14:58:19.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) acknowledged by 'Grant Mbewe User 2' at '2016-10-03T14:58:19.000+01:00'</Comment>
+                        <LoggedTime>2016-10-03T14:58:01.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:04:54.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T15:04:54.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:05:53.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T15:05:53.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:05:54.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) sent to mobile resource 'Mbewe, Grant' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T15:05:54.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:06:53.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T15:06:53.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:06:53.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) sent to mobile resource 'Mbewe, Grant' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T15:06:53.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:07:53.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) sent to mobile resource 'Mbenga, Jabilo' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T15:07:53.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:07:53.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) sent to mobile resource 'Mbewe, Grant' for acknowledgement</Comment>
+                        <LoggedTime>2016-10-03T15:07:53.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:08:16.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Alarm (Incident (INCD-14795-J) : WARNING ! ETR (30-SEP 23:48) breached, 3 custs off supply) acknowledged by 'Grant Mbewe User 2' at '2016-10-03T15:08:16.000+01:00'</Comment>
+                        <LoggedTime>2016-10-03T15:08:00.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-23</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-10-03T15:08:21.000000+01:00</ActualTime>
+                        <Category>2</Category>
+                        <Comment>Arrival On Site Time set to '03-OCT 15:08'
+The resource Grant Mbewe User 2 has Arrived On Site.</Comment>
+                        <LoggedTime>2016-10-03T15:08:03.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>-1</SubCategory>
+                     </Item>
+                     <Item>
+                        <ActualTime>2016-11-04T15:07:31.000000+00:00</ActualTime>
+                        <Category>1</Category>
+                        <Comment>ETR set to '04-NOV 15:07' by &lt;unknown&gt;</Comment>
+                        <LoggedTime>2016-10-03T15:08:32.000000+01:00</LoggedTime>
+                        <NumOffSupply>0</NumOffSupply>
+                        <NumOnSupply>0</NumOnSupply>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                        <SubCategory>1001</SubCategory>
+                     </Item>
+                  </LogMessages>
+                  <Resources>
+                     <Item>
+                        <ResourceForename>Grant</ResourceForename>
+                        <ResourceSurname>Mbewe</ResourceSurname>
+                     </Item>
+                     <Item>
+                        <ResourceForename>Jabilo</ResourceForename>
+                        <ResourceSurname>Mbenga</ResourceSurname>
+                     </Item>
+                  </Resources>
+                  <ScopeDetails>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>41</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097557</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>41</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097612</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerGPSEasting>450100</CustomerGPSEasting>
+                        <CustomerGPSNorthing>650100</CustomerGPSNorthing>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097553</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>true</CustomerCalled>
+                        <CustomerGPSEasting>450100</CustomerGPSEasting>
+                        <CustomerGPSNorthing>650100</CustomerGPSNorthing>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097554</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097556</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>true</CustomerCalled>
+                        <CustomerGPSEasting>450100</CustomerGPSEasting>
+                        <CustomerGPSNorthing>650100</CustomerGPSNorthing>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097560</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097581</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerGPSEasting>259422</CustomerGPSEasting>
+                        <CustomerGPSNorthing>665140</CustomerGPSNorthing>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097607</ProNumber>
+                        <State>PRED</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerGPSEasting>450100</CustomerGPSEasting>
+                        <CustomerGPSNorthing>650100</CustomerGPSNorthing>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097608</ProNumber>
+                        <State>PRED</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerGPSEasting>450100</CustomerGPSEasting>
+                        <CustomerGPSNorthing>650100</CustomerGPSNorthing>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097609</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097611</ProNumber>
+                        <State>PRED</State>
+                     </Item>
+                     <Item>
+                        <CompAlias>14375892U</CompAlias>
+                        <CompName>INGRAM ST 149, LOCAL TRANSFORMER, TX</CompName>
+                        <CustomerCalled>false</CustomerCalled>
+                        <CustomerSensitive>false</CustomerSensitive>
+                        <FeederNo>42</FeederNo>
+                        <NumCustomers>1</NumCustomers>
+                        <Phase>A</Phase>
+                        <ProNumber>12097613</ProNumber>
+                        <State>REST</State>
+                     </Item>
+                  </ScopeDetails>
+                  <TCSJobHeader>
+                     <ConfirmedCustomers>0</ConfirmedCustomers>
+                     <CreatedDateTime>2016-09-29T16:08:51.639756+01:00</CreatedDateTime>
+                     <DangerFlag>0</DangerFlag>
+                     <DeadDeviceAlias>14375892U</DeadDeviceAlias>
+                     <Dispatcher>Grant Mbewe</Dispatcher>
+                     <EstimatedRestorationDate>2016-11-04T15:07:31.000000+00:00</EstimatedRestorationDate>
+                     <HVFeeder>14</HVFeeder>
+                     <HVFeederDescription>INGRAM ST 149</HVFeederDescription>
+                     <IncidentCategory>Underground Fault LV incident</IncidentCategory>
+                     <IncidentCategoryId>LUGF</IncidentCategoryId>
+                     <IncidentComment>test ---</IncidentComment>
+                     <IncidentDescription>INGRAM ST 149 GM S/S, LOCAL TRANSFORMER Tx ---</IncidentDescription>
+                     <IncidentPriority>1</IncidentPriority>
+                     <IncidentReference>INCD-14795-J</IncidentReference>
+                     <IncidentType>LV</IncidentType>
+                     <IncidentTypeDescription>LV</IncidentTypeDescription>
+                     <LVFeederNumber>0</LVFeederNumber>
+                     <MaxScopeLimit>12</MaxScopeLimit>
+                     <OperatingZone>GLASGOW NORTH</OperatingZone>
+                     <PredictedCustomers>3</PredictedCustomers>
+                     <PrimaryDeviceEasting>259651</PrimaryDeviceEasting>
+                     <PrimaryDeviceName>ROTTENROW</PrimaryDeviceName>
+                     <PrimaryDeviceNorthing>665538</PrimaryDeviceNorthing>
+                     <ProtectionDeviceEasting>259425</ProtectionDeviceEasting>
+                     <ProtectionDeviceId>14375892U</ProtectionDeviceId>
+                     <ProtectionDeviceName>INGRAM ST 149 GM S/S, LOCAL TRANSFORMER Tx</ProtectionDeviceName>
+                     <ProtectionDeviceNorthing>665220</ProtectionDeviceNorthing>
+                     <ProtectionDeviceTripCount>1</ProtectionDeviceTripCount>
+                     <ProtectionDeviceTripCountPeriod>14</ProtectionDeviceTripCountPeriod>
+                     <ProtectionDeviceTrips>
+                        <Item>
+                           <CreationDate>2016-09-29T16:08:51.639756+01:00</CreationDate>
+                        </Item>
+                     </ProtectionDeviceTrips>
+                     <ReceivedDateTime>2016-09-29T20:49:00.000000+01:00</ReceivedDateTime>
+                     <SubstationName>INGRAM ST 149 GM S/S, LOCAL TRANSFORMER Tx</SubstationName>
+                     <mDroverSpecific>
+                        <JobDisplayOrder>20160929040851</JobDisplayOrder>
+                        <JobScreenLayoutID>GE_TCS</JobScreenLayoutID>
+                        <JobStatusFlowID>GE_TCS</JobStatusFlowID>
+                        <JobType>LV</JobType>
+                     </mDroverSpecific>
+                  </TCSJobHeader>
+               </TCSJobDetails>
+               <ToUser>
+                  <UserId>GRANTM2</UserId>
+                  <UserName>MBENGA, JABILO</UserName>
+               </ToUser>
+            </MsgBody>
+            <MsgHeader>
+               <LongDescription>MESSAGE: Incident Dispatch -- SENT TO: MBENGA, JABILO -- FOR INCIDENT: INCD-14795-J: INGRAM ST 149 GM S/S, LOCAL TRANSFORMER Tx ---</LongDescription>
+               <MsgId>J0029ca5fc8fbe0c1d98e4J000039cb</MsgId>
+               <NmsEnvironment>Live</NmsEnvironment>
+               <NmsGroupName>SPEN</NmsGroupName>
+               <ShortDescription>IncidentDispatch:MBENGA, JABILO:INCD-14795-J</ShortDescription>
+               <TestScenario>0</TestScenario>
+               <TimeToLive>PT10M</TimeToLive>
+               <Timestamp>2016-10-03T15:32:45.550212+01:00</Timestamp>
+               <mDroverSpecific>
+                  <MessageExternalSourceEnv>SPEN_Live</MessageExternalSourceEnv>
+                  <MessageMACHSubSystem>mdff</MessageMACHSubSystem>
+                  <TimeToLive>0</TimeToLive>
+               </mDroverSpecific>
+            </MsgHeader>
+         </IncidentDispatchStc>
+      </ENMAC:IncidentDispatch>
+   </soap:Body>
+</soap:Envelope>

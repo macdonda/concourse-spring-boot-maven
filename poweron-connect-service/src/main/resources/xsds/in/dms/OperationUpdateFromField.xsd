@@ -1,0 +1,542 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (GE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="OperationUpdateFromFieldSchema">
+  <xs:include schemaLocation="../../msg_headers.xsd"/>
+  <xs:include schemaLocation="../../user_types.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : OperationUpdateFromField.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in/dms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  06-07-2012 AAFT    157846  Added RequestInstructions flag.
+#*M  08-03-2012 AAFT    149844  Added UpdateEngineer as available UpdateType flag
+#*M  10-12-2009 AAFT    97131   Added Transition to OperationUpdateFromField
+#*M  10-12-2009 AAFT    94566   Added OperationExecuteFromField 
+#*M  18-06-2007	BF	51666	Added IssuingOfficerName and IssuingOfficerPhone
+#*M				to document issue.
+#*M  07-05-2007	YMC	50747	Added ExternalRef to document issue.
+#*M				Reintroduce OperationUpdateFromField.
+#*M  18-04-2007	BF	49717	Renamed OperationUpdateFromField to
+#*M				OperationUpdateDetailsFromField. 
+#*M				Renamed PerformedBy element in above message 
+#*M				to AssignedUser.
+#*M  06-07-2006	ME	43577	Updated XSD hierarchy
+#*M  22-02-2006	YMC	39882	Added DocumentRequestIssueFromField
+#*M				      DocumentRequestCompleteFromField
+#*M				      DocumentRequestAbortFromField
+#*M  09-01-2006	YMC	35971	Wrap MsgHeader and MsgBody into a structure
+#*M  04-01-2006	YMC	35971	Added OperationUpdateFromField
+#*M  18-12-2005	YMC	35971	Timestamp changed to ManualTimestamp.
+#*M				Added SystemTimestamp.
+#*M  13-12-2005	YMC	35971	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="OperationUpdateFromFieldMsgBody">
+    <xs:annotation>
+      <xs:documentation>This is intended as a base MsgBody type for all operation update messages that come from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="FromUser" type="UserIdentificationType">
+        <xs:annotation>
+          <xs:documentation>Who sent the message. 
+NOTE : this might be different from the person who actually performed the update. For example, the Senior Authorised Person (SAP) In Charge can send the update on the behalf of the person who actually performed the update.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OperationId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Id of operation to update.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PerformedBy" type="UserIdentificationType">
+        <xs:annotation>
+          <xs:documentation>Who performed this update.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ManualTimestamp" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>When the update was actually performed. This might be different from when the update was actually recorded (see SystemTimestamp).
+NOTE : this field must be filled in and is not populated automatically by the NMS system because certain types of update are critical for reporting e.g. Customer Minutes Lost calculations.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SystemTimestamp" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>When was the update recorded.
+If this is not provided, then the NMS system will timestamp with the current time.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Comments associated with the update.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Transition" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The transition of the operation update.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequestInstructions" type="xs:integer" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Has the user requested further instructions?</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:element name="OperationConfirmFromField">
+    <xs:annotation>
+      <xs:documentation>An operation has been confirmed from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OperationConfirmFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OperationExecuteFromField">
+    <xs:annotation>
+      <xs:documentation>An operation has been executed from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OperationExecuteFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OperationAbortFromField">
+    <xs:annotation>
+      <xs:documentation>An operation has been aborted from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OperationAbortFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentIssueFromField">
+    <xs:annotation>
+      <xs:documentation>A document has been issued from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentIssueFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentCompleteFromField">
+    <xs:annotation>
+      <xs:documentation>A document has been completed from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentCompleteFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentAbortFromField">
+    <xs:annotation>
+      <xs:documentation>A document has been aborted from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentAbortFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentRequestIssueFromField">
+    <xs:annotation>
+      <xs:documentation>A document has been requested to be issued from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentRequestIssueFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+<!--
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+-->
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="FromUser" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>Who sent the message. 
+NOTE : this might be different from the person who actually performed the update. For example, the Senior Authorised Person (SAP) In Charge can send the update on the behalf of the person who actually performed the update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="OperationId" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>Id of operation to update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="PerformedBy" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>Who performed this update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ManualTimestamp" type="xs:dateTime">
+                      <xs:annotation>
+                        <xs:documentation>When the update was actually performed. This might be different from when the update was actually recorded (see SystemTimestamp).
+NOTE : this field must be filled in and is not populated automatically by the NMS system because certain types of update are critical for reporting e.g. Customer Minutes Lost calculations.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SystemTimestamp" type="xs:dateTime" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>When was the update recorded.
+If this is not provided, then the NMS system will timestamp with the current time.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Comments associated with the update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ExternalRef" type="xs:string" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>New external reference for the document. Typically obtained from the hard-copy version of the document that is out in the field.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+		    <xs:element name="IssuingOfficerName" type="xs:string" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Issuing Officer Name of the document.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+		    <xs:element name="IssuingOfficerPhone" type="xs:string" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Telephone number of issuing officer.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentRequestCompleteFromField">
+    <xs:annotation>
+      <xs:documentation>A document has been requested to be completed from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentRequestCompleteFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentRequestAbortFromField">
+    <xs:annotation>
+      <xs:documentation>A document has been requested to be aborted from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentRequestAbortFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OperationUpdateDetailsFromField">
+    <xs:annotation>
+      <xs:documentation>A generic message to update an operation.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OperationUpdateDetailsFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="FromUser" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>Who sent the message. 
+NOTE : this might be different from the person who actually performed the update. For example, the Senior Authorised Person (SAP) In Charge can send the update on the behalf of the person who actually performed the update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="OperationId" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>Id of operation to update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="AssignedUser" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>The person the operation is assigned to.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ManualTimestamp" type="xs:dateTime">
+                      <xs:annotation>
+                        <xs:documentation>When the update was actually performed. This might be different from when the update was actually recorded (see SystemTimestamp).
+NOTE : this field must be filled in and is not populated automatically by the NMS system because certain types of update are critical for reporting e.g. Customer Minutes Lost calculations.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SystemTimestamp" type="xs:dateTime" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>When was the update recorded.
+If this is not provided, then the NMS system will timestamp with the current time.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Comments associated with the update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OperationUpdateFromField">
+    <xs:annotation>
+      <xs:documentation>A generic message to update an operation.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OperationUpdateFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+<!--
+                <xs:complexType>
+                  <xs:complexContent>
+                    <xs:extension base="OperationUpdateFromFieldMsgBody"/>
+                  </xs:complexContent>
+                </xs:complexType>
+-->
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="FromUser" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>Who sent the message. 
+NOTE : this might be different from the person who actually performed the update. For example, the Senior Authorised Person (SAP) In Charge can send the update on the behalf of the person who actually performed the update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="OperationId" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>Id of operation to update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="PerformedBy" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>Who performed this update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ManualTimestamp" type="xs:dateTime">
+                      <xs:annotation>
+                        <xs:documentation>When the update was actually performed. This might be different from when the update was actually recorded (see SystemTimestamp).
+NOTE : this field must be filled in and is not populated automatically by the NMS system because certain types of update are critical for reporting e.g. Customer Minutes Lost calculations.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SystemTimestamp" type="xs:dateTime" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>When was the update recorded.
+If this is not provided, then the NMS system will timestamp with the current time.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation>Comments associated with the update.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="UpdateType" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>The type of update. The following are supported:
+Confirm (The operation has been confirmed.)
+
+Abort [not implemented for documents] (The operation has been aborted. This can be used for both plant and documents.)
+
+Issue [not implemented] (The document has been issued.)
+
+Complete (The document has been completed.)
+
+RequestIssue (The Field Engineer has requested the document to be issued.)
+
+RequestComplete (The Field Engineer has requested the document to be completed.)
+
+RequestAbort (The Field Engineer has requested the document to be aborted.)
+
+Execute (The Field Engineer has requested the execution of a telecontrol operation.)
+
+UpdateEngineer (The Field Engineer has been updated on this operation.)
+			</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+		    <xs:element name="Transition" type="xs:string" nillable="true" minOccurs="0">
+        	      <xs:annotation>
+        		<xs:documentation>The transition of the operation update.</xs:documentation>
+        	      </xs:annotation>
+		    </xs:element>
+		    <xs:element name="RequestInstructions" type="xs:integer" minOccurs="0">
+        	      <xs:annotation>
+        		<xs:documentation>Has the user requested further instructions?</xs:documentation>
+        	      </xs:annotation>
+		    </xs:element>
+                    <xs:element name="Document" minOccurs="0">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="ExternalRef" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Only applicable for UpdateType of Issue and RequestIssue.
+New external reference for the document. Typically obtained from the hard-copy version of the document that is out in the field.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                    <xs:element name="IssuingOfficerName" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Only applicable for UpdateType of Issue and RequestIssue.
+Issuing Officer Name for the document.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                    <xs:element name="IssuingOfficerPhone" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation>Only applicable for UpdateType of Issue and RequestIssue.
+Telephone number of Issuing Officer.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

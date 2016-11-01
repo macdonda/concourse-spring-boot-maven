@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (GE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="LogoffSchema">
+  <xs:include schemaLocation="../msg_headers.xsd"/>
+  <xs:include schemaLocation="../user_types.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : UserFieldAckOfNmsMsg.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  06-07-2006	ME	43577	Updated XSD hierarchy
+#*M  14-03-2006	YMC	39882	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="UserFieldAckOfNmsMsg">
+    <xs:annotation>
+      <xs:documentation>Asynchronous message that is sent when the PDA user acknowledges the receipt of a message from the NMS system.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="UserFieldAckOfNmsMsgStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="FromUser" type="UserIdentificationType">
+                      <xs:annotation>
+                        <xs:documentation>Who sent the message.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="OrigMsgId" type="xs:string">
+                      <xs:annotation>
+                        <xs:documentation>Id of the original request from ENMAC.
+Example: 12345633</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Timestamp" type="xs:dateTime">
+                      <xs:annotation>
+                        <xs:documentation>Datetime that the user acknowledged the NMS message.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

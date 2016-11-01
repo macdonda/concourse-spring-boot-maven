@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="CreateOperationFromFieldSchema">
+  <xs:include schemaLocation="../../msg_headers.xsd"/>
+  <xs:include schemaLocation="../../user_types.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : CreateOperationFromField.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in/dms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Energy, 2016
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE           BY      CN      DESCRIPTION
+#*M  ----           --      --      -----------
+#*M  05-08-2016     AAFT    255256  Deal with insert mode
+#*M  28-07-2016     AAFT    254397  Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M  
+#*M The XSD describing the message required to create operations from a mobile 
+#*M device
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="CreateOperationFromField">
+    <xs:annotation>
+      <xs:documentation>An operation has been confirmed from the field.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="CreateOperationFromFieldStc">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="MsgHeader" type="ToNmsMsgHeader"/>
+              <xs:element name="MsgBody">
+                <xs:complexType>
+                <xs:all>
+                  <xs:element name="FromUser" type="UserIdentificationType">
+                    <xs:annotation>
+                      <xs:documentation>Who sent the message.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="ActionName" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation>The specific operation action we want to perform</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="ComponentAlias" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation>The alias of the component we are doing the action on</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="JobReference" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation>The reference of the order</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="ManualTimestamp" type="xs:dateTime">
+                    <xs:annotation>
+                      <xs:documentation>When the update was actually performed. This might be different from when the update was actually recorded (see SystemTimestamp).
+            NOTE : this field must be filled in and is not populated automatically by the NMS system because certain types of update are critical for reporting e.g. Customer Minutes Lost calculations.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="CurrentOperationId" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>The operation selected when the operation was created. If not supplied, operations will be appended.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="InsertMode" type="xs:integer" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>The position in the switching log the operation is to be inserted. If not supplied, operations will be appended.
+                                        0 - INSERT_BEFORE
+                                        1 - INSERT_AFTER</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="SystemTimestamp" type="xs:dateTime" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>When was the update recorded. If this is not provided, then the NMS system will timestamp with the current time.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Comments associated with the update.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="Phases" type="PhaseCode">
+                  </xs:element>
+                </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

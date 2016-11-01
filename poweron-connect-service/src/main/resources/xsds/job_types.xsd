@@ -1,0 +1,1512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Steve Godding (Yambay) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms"
+    targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" elementFormDefault="unqualified"
+    attributeFormDefault="unqualified" id="JobTypesSchema">
+  <xs:include schemaLocation="document_types.xsd"/>
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : job_types.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  30-08-2016 MH      255016  Added SinglePhaseCode / PhaseCode
+#*M  12-08-2016 DC      255896  Added additional fields to various structures including
+#*M                             adding CallCreationTime, CustomerNo and 
+#*M                             CustomerPropertyNo to "Calls"
+#*M  05-08-2016 DC      255838  Changed FaultReportDetails to be its own
+#*M                             complex type. Use this new type in 
+#*M                             TCSJobDetailsType and JobDetailsType.
+#*M  11-04-2016	DC      245825  Added LogMessages()
+#*M  07-01-2014 AAFT    191316  Added FGColour, BGColour
+#*M  30-04-2012 AAFT    174800  Added JobParallelType.
+#*M  19-09-2012 TA      163266  Added Voltage.
+#*M  12-09-2012 TA      149844  Replace Voltage with VoltageDesc.
+#*M  28-05-2012 TA      155456  Added Network Status.
+#*M  07-03-2012 AAFT    149843  Added LoggedOnMDT to JobFieldOperativesType.
+#*M  02-03-2012 AAFT    149965  Added JobFieldOperativesType.
+#*M  25-07-2011 DB      137354  Added SafeftyPrecaution to OperationDetailsType
+#*M  21-06-2011 CR      134967  Added CustomerCalled and CustomerSensitive to 
+#*M                             ScopeDetails
+#*M  27-04-2011 DB      131749  Removed maxLength=25 restriction from
+#*M                             OperationDisplayText
+#*M  19-04-2011 DGK     131373  Added primary device fields and dispatcher to
+#*M                             TCSJobHeaderType.
+#*M                             Added Description to ThirdPartyDetailsType.
+#*M                             Added Appointment date fields to Calls in
+#*M                             TCSJobDetailsType.
+#*M  14-04-2011	MR	131459	Added property number and GPS coordinates
+#*M                             to ScopeDetails
+#*M  28-03-2011 CJC     129850  Add missing fields to FaultReportDetails
+#*M  08-02-2011 ADB	102472  Add the Retailer field to Calls
+#*M  05-05-2010 RF      105158  Make the text attribute nillable
+#*M  08-02-2010 RM      98886   Added ReportPlannedStartDate and 
+#*M                             ReportPlannedEndDate to FaultReportDetails.
+#*M  10-02-2010 TDF     99643   Remove duplicate JobClass and JobClassDesc.
+#*M  12-12-2009 AAFT    97129   Added IsTele to the Operations stc
+#*M  03-11-2009 TDF     93977   Ensure JobClass and JobClassDesc optional.
+#*M  29-10-2009 AAFT    93780   Add JobClass and JobClassDesc.
+#*M  27-10-2009 TDF     93482   Updated IncidentType from int to string type 
+#*M  26-10-2009 AAFT    93570   Added PlannedDuration to JobHeaderUpdate.
+#*M  22-09-2009 TDF     91707   Updated SwitchingOp to SwitchingOpList in 
+#*M                             JobHeaderType, removed some illegal characters.
+#*M  04-08-2009 DRM     88625   Removed CaseReference from Call structure.
+#*M  03-07-2009 DGK     85262   Added TPD, DangerFlag to TCSJobHeaderType and
+#*M                             Links to TCSJobDetailsType 
+#*M  02-07-2009 XHH     81676   Added ThirdPartyDetailsType
+#*M  23-06-2009 TDF     85793   Updated JobType to string in JobHeaderType
+#*M  08-06-2009 DB      84836   Added optional ComponentAlias and ComponentName
+#*M                             elements to OperationDetailsType
+#*M  05-05-2009 TDF     81420   Removed component description fields and
+#*M                             SubstationFeeders in JobHeaderType.
+#*M  13-04-2009 TDF     79979   Removed WPC specifies fields from JobHeader,
+#*M                             added JobHeaderConfigFields.
+#*M  25-03-2009 TDF     79957   Add element SubstationFeeders to JobHeader
+#*M  20-03-2009 TDF     79737   Updated examples and removed JobClass, 
+#*M                             JobConditionRef in JobHeaderType
+#*M  17-03-2009 TDF     79509   Added component description fields in JobHeaderType
+#*M  09-03-2009 TDF     79056   Added all fields of job_header_core, wpc_job_header
+#*M                             and wpc_fault_header in JobHeaderType
+#*M  15-01-2008 TDF     75445   Added JobStatus in JobHeaderType
+#*M  13-08-2008 TDF     68230   Added attributes nillable="true" and minOccurs="0" in 
+#*M                             element CustomerSupplyType
+#*M  09-09-2008	AAFT	66488	Ensured calls stc has nillable fields to cope with 
+#*M                             non-customer call.
+#*M  14-07-2008	JC	66488	Added new fields to TCSJobHeaderType struct
+#*M				Added new fields to Calls struct
+#*M  20-05-2008 JC      64277   Added IncidentPriority,IncidentComment,DeadDeviceAlias
+#*M                             to TCSJobHeaderType struct
+#*M  02-05-2008 AAFT    63640   Added in ResourceComment, removed during merge.  
+#*M  22-04-2008 AAFT    62869   Add type info for ResourceStatusChangeComment
+#*M  11-04-2008 AAFT    62686   Updated FaultReportDetails fields from int to float
+#*M  10-04-2008	CJC 	60387	Added user_reference fields to RestorationStagesList
+#*M                             Added RestorationCustomerList, RestorationComponentList
+#*M                             and ReportCustomerList
+#*M  02-04-2008 DH      62000   Added LocationNo to ReportLocationsList struct
+#*M  06-03-2008 YG      61108   Added ResourceStatusChangeComment to TCSJobHeaderType.
+#*M  22-02-2008 SK      60221   Added Identifier field to ReportLocationsList stc.
+#*M  17-01-2008 JC      58807   Added CaseReference field to Call structure
+#*M  05-12-2007 AAFT    57432   Camel Cap the xml tags in FaultReportDetails stc
+#*M  20-11-2007 AAFT    56600   Added FaultReportDetails
+#*M  09-10-2007 AAFT    54379   Added Scope to IncidentDispath message
+#*M  08-06-2007 DB      51692   Removed GridReference and added SubstationName
+#*M                             to TCSJobHeaderType
+#*M  13-03-2007 DB      49093	Added MaxScopeLimit to TCSJobHeaderType
+#*M  01-02-2007 DB      47681	Added 3 Customer name fields and
+#*M                             CustomerTelephoneNumbers to Calls structure
+#*M  15-12-2006 DB      47384	Added IncidentCategory to TCSJobHeaderType
+#*M  07-12-2006 DRM     47279	Added Resource Array
+#*M  07-12-2006 AAFT    47246   Added IncidentTypeDescription.
+#*M  30-11-2006 AAFT    46965   Added HasCriticalInfo, IsSensitive to call array.
+#*M  24-11-2006 AAFT    46985   Added GridReference.
+#*M  22-11-2006 AAFT    46677   Added PremiseName, PremiseNumber, Street, Area,
+#*M                             TownName, Postcode. Added nillable="true" to all 
+#*M                             minOccurs="0" fields.
+#*M  01-09-2006	DB	45047	Added EstimatedRestorationDate to TCSJobHeaderType                             
+#*M  26-07-2006	ME	44094	Make TCS Call and Customer fields xs:all and added
+#*M				CustomerForenames
+#*M  25-07-2006	ME	44094	Make TCS Call and Customer fields optional
+#*M  09-01-2006	YMC	35971	Do not derive OperationArrayType from 
+#*M				SOAP-ENC:Array
+#*M				Import of SOAP encoding no longer required.
+#*M				Renamed array 'item' to 'Item'.
+#*M  23-12-2005	YMC	35971	Added OperationArrayType
+#*M				JobDetailsType.Operations is now of this type.
+#*M  20-12-2005	SG	35971	Import http://schemas.xmlsoap.org/soap/encoding/
+#*M		Yambay		Changed xs:int to xs:integer
+#*M				Added length restrictions to OperationSummary
+#*M				and OperationDisplayText
+#*M				Added anyAttribute namespace="##any"
+#*M				to JobDetailsType.Operations.
+#*M  13-12-2005	YMC	35971	Added OperationItemNumberType
+#*M				Added JobDetailsType
+#*M  10-12-2005	YMC	35971	Changed DiagramState to State
+#*M				Renamed OperationType to OperationDetailsType
+#*M				Added OperationDetailsType.DocumentDetails
+#*M  08-12-2005	YMC	35971	Annotated all fields. 
+#*M				Change *FieldEngineer* to *User*.
+#*M				Added AbortTimestamp.
+#*M  07-12-2005	YMC	35971	All fields that potentially can be blank need 
+#*M				nillable="true" because the SOAPLite serialiser
+#*M				'intelligently' outputs xsi:null="1" 
+#*M				for blank elements.
+#*M  06-12-2005	YMC	35971	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="JobHeaderType">
+    <xs:all>
+      <xs:element name="JobNumber" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Human readable unique identifier for a job. 
+Example: J-123-U.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ScheduleNumber" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Unique identifier given to a planned job that has been approved. The planned job still retains it's JobNumber.  
+Example: S-1234-X.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>A summary for the job.
+Example: OMOA STATION S/S, LOCAL TRANSFORMER TRANSFORMER FAULT</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobStatus" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Status of the job.
+Example: Prechecked, Approved</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WorkDescription" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A description of what work is to be perform. This can be multi-line text.
+Example: 
+<![CDATA[CHANGE CB 2L5. RECTIFY HOT SPOT ON ABIS 2T4 & 6L4
+11KV OFS 1201 MAINT AT TURNER RD 210046
+TO DIVERT A SHORT PIECE OF HV CABLE BETWEEN MS 3755 TO CB 1981 TEED MS1981, TO PIECE OF HV CABLE IS BETWEEN MS3755 AND THE BRANCH JOINT TO WILFRED RD 7071, SO WE CAN PHASE OUT ACROSS LV.]]></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SapInChargeId" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The user id of the Senior Authorised Person In Charge. This resource is the person in charge of the Field Engineers for the job.
+Example: 987654</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SapInChargeName" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the Senior Authorised Person In Charge.
+Example: Dave Jones</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlannedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Datetime which work is to begin. Should only be filled in for planned jobs.
+Example: 2005-11-18T16:30:00.000000+01:00</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobType" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Job Type is defined in the Job Type lookup. Refer to the ENMAC Configuration Guide-System Defined Lookup Names for details.
+Example: Switching Points.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreatedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the Control Engineer who created the job.
+Example: tandongfei.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CreatedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The date and time of job creation.  
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SubmittedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Submitted By is the name of the Control Engineer who submitted the schedule.
+Example: Tollin Andrew.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="District" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>District associated with the job, as defined in the Job District lookup. Refer to the ENMAC Configuration Guide-System Defined Lookup Names for details.
+Example: Ayrshire.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Voltage" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The voltage associated with the job.
+Example: 11.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VoltageDesc" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The voltage of the job as a look up description
+Example: 11kV.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlantChanges" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Plant Changes indicates if the job will require any diagram or plant changes.
+Example: 0.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CeNotes" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The control engineers' notes on the job.
+Example: Dispatch.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InitialCheckBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the Control Engineer who carried out an initial check on the schedule.
+Example: Chen Jun.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InitialCheckDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The date on which the initial check to the schedule was made.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ApprovedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The Control Engineer who approved the schedule.
+Example: Cassidy Colin.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ApprovedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The date the schedule was approved.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ScheduleCe" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The Control Engineer in charge of the schedule.
+Example: Chen Jun.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ScheduleDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Date of schedule.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlantDataComplete" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Plant Data Complete is ticked if any amendments to plant data been completed.
+Example: 1.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LoadSheddingComplete" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Load Shedding Complete is ticked to indicate load shedding is complete.
+Example: 0.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FaultOperationReset" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Fault Operation Reset is ticked if the fault operation counters have been reset.
+Example: 1.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CompletedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The Control Engineer who completed the job.
+Example: David Brogan.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CompletedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>When completed this job.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IncidentDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The date of a related incident.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RtsTime" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>RTS Time is the return to service time.
+Example: 2009-03-10T10:00:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NafirsNumber" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>NAFIRS Number that is assigned to an ENMAC job from the external NAFIRS system.
+Example: 079881687.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobCondition" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Job Condition as efined in the Job Condition lookup. Refer to the ENMAC Configuration Guide-System Defined Lookup Names for details.
+Example: Outstanding Incident.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AllocatedWorkstation" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Defined in the Job Allocation Workstation lookup. Refer to the ENMAC Configuration Guide-System Defined Lookup Names for details.
+Example: tando.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Region" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Region of this job.
+Example: AAFT.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="KeyPlant" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Key Plant associated with the job.
+Example: Plant2.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActiveCe" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The Control Engineer who is in charge of the job. Note that the job must be active before a value is displayed in this field.
+Example: Tollin Andrew.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Status" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The status.
+Example: 1.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TcsIncidentNumber" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>TCS Incident Number of the incident associated with the job, if there is one.
+Example: INCD-7156-K.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DefaultFieldOperative" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Default Field Operative for the job.
+Example: Brin Fench.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlannedEndDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Planned End Date of the schedule.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CommencedBy" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The Control Engineer who started work on the job.
+Example: Chen Jun.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CommencedDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Date work was started on the job.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StartDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The start date.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecheckState" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Indicates the state of the network that the schedule was checked against when it was pre-checked. This can be one of Current,Normal,None.
+Example: 1.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ApprovalState" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The network state against which the schedule was checked when it was approved.This field can have Current,Normal,None
+Example: 1.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ScheduleVersion" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Schedule Version is incremented each time an on initial check is performed on the schedule. Refer to Performing an Initial Check on a Switching Schedule for details.
+Example: 3.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlannedDuration" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The duration in hours of the planned work.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobClass" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The class of the job as a look up reference.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobClassDesc" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The class of the job as a look up description.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActualStart" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The actual date this job started.
+Example: 2009-03-08T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActualEnd" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The date this job finished.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrentStartDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The time the job is to start, taken from the first Instruct operation, otherwise it is the planned start date.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrentEndDate" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The date and time the job was completed.
+Example: 2009-03-10T12:30:00.000000+01:00.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobParallel" type="JobParallelType" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The notification of parallels control details associated with the job header.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobHeaderConfigFields" type="JobTextArrayType" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The list of job header texts associated with the job.</xs:documentation>
+        </xs:annotation>
+      </xs:element>           
+            <xs:element name="mDroverSpecific" type="mDroverJobBusinessRules">
+        <xs:annotation>
+          <xs:documentation>Information required to drive the mDrover MFS.</xs:documentation>
+        </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+    <xs:complexType name="TCSJobHeaderType">
+        <xs:all>
+            <xs:element name="IncidentReference" type="xs:string" />
+            <xs:element name="IncidentDescription" type="xs:string" minOccurs="0" nillable="true" />
+            <xs:element name="ReceivedDateTime" type="xs:dateTime" nillable="true" minOccurs="0"/>
+            <xs:element name="CreatedDateTime" type="xs:dateTime" />
+            <xs:element name="IncidentType" type="xs:string" />
+            <xs:element name="PredictedCustomers" type="xs:integer" />
+            <xs:element name="ConfirmedCustomers" type="xs:integer" />
+            <xs:element name="MaxScopeLimit" type="xs:integer" />
+            <xs:element name="mDroverSpecific" type="mDroverJobBusinessRules" />
+	    <xs:element name="EstimatedRestorationDate" type="xs:dateTime" nillable="true" minOccurs="0" />
+	    <xs:element name="SubstationName" type="xs:string" nillable="true" minOccurs="0" />
+	    <xs:element name="IncidentTypeDescription" type="xs:string" nillable="true" minOccurs="0" />	
+            <xs:element name="IncidentCategory" type="xs:string" />
+            <xs:element name="ResourceStatusChangeComment" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="IncidentPriority" type="xs:integer" nillable="true" minOccurs="0"/>
+	    <xs:element name="IncidentComment" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="DeadDeviceAlias" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="IncidentCategoryId" type="xs:string" />
+	    <xs:element name="ProtectionDeviceId" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="OperatingZone" type="xs:string" />
+	    <xs:element name="HVFeeder" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="HVFeederDescription" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="LVFeederNumber" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="TransformerName" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="ProtectionDeviceTripCountPeriod" type="xs:integer" />
+	    <xs:element name="ProtectionDeviceTripCount" type="xs:integer" />
+	    <xs:element name="ProtectionDeviceTrips" type="ProtectionDeviceTripArrayType" minOccurs="0"/>
+	    <xs:element name="ProtectionDeviceName" type="xs:string" nillable="true" minOccurs="0"/>
+	    <xs:element name="ProtectionDeviceEasting" type="xs:integer" nillable="true" minOccurs="0"/>
+	    <xs:element name="ProtectionDeviceNorthing" type="xs:integer" nillable="true" minOccurs="0"/>
+	    <xs:element name="ThirdPartyDetails" type="ThirdPartyDetailsType" nillable="true" minOccurs="0" />
+	    <xs:element name="DangerFlag" type="xs:integer" nillable="true" minOccurs="0" />
+	    <xs:element name="PrimaryDeviceName" type="xs:string" nillable="true" minOccurs="0" />
+	    <xs:element name="PrimaryDeviceEasting" type="xs:string" nillable="true" minOccurs="0" />
+	    <xs:element name="PrimaryDeviceNorthing" type="xs:string" nillable="true" minOccurs="0" />
+	    <xs:element name="Dispatcher" type="xs:string" nillable="true" minOccurs="0" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="OperationItemNumberType">
+    <xs:annotation>
+      <xs:documentation>This type holds Item Number of an operation which is used to uniquely identify the operation in a human-readable format and is also used for ordering.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="ItemNumber1" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>All operations are identified in a human readable format using the Item Number. This number is split between 2 or 3 parts e.g. 2.5, or 2.5.1.
+This field is the 1st part of the Item Number.
+Example: 2</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ItemNumber2" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>2nd part of the Item Number. If this is not used it will be 0.
+Example: 5</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ItemNumber3" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>3rd part of the Item Number. If this is not used it will be 0.
+
+Example: 16</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ItemNumberString" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>ItemNumbers 1 to 3 concatenated into a string e.g. "2.5.16" with a dot "." separating the parts.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="JobFieldOperativesType">
+    <xs:all>
+      <xs:element name="UserId" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The personnel number of the resource 
+Example: 12345</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserName" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The full name of the resource 
+Example: TOLLIN, ANDREW</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LoggedOnMDT" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the device 
+Example: MD00001</xs:documentation>
+        </xs:annotation>
+      </xs:element>      
+      </xs:all>
+  </xs:complexType>      
+  <xs:complexType name="OperationDetailsType">
+    <xs:all>
+      <xs:element name="OperationId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Unique id of the operation. 
+Example: U00001234O</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ItemNumber" type="OperationItemNumberType">
+        <xs:annotation>
+          <xs:documentation>The Item Number of the operation which is used to uniquely identify the operation in a human-readable format and is also used for ordering.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobNumber" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The number of the job that the operation belongs to.
+Example: J-123-X</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OperationType" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>Although most operations are associated with components, operations can apply to various other entities relating to network management. The types of operations are as follows:
+0	operation associated with plant.
+	#define SYMBOL_OPERATION
+1	operation associated with patches.
+	#define PATCH_OPERATION
+2	operation associated with documents; for example, permits.
+	#define PERMIT_OPERATION
+3	operation associated with a textual operation that has no annotation.
+	#define TEXT_OPERATION
+4	operation associated with a textual operation that has annotation.
+	#define ANNOTATION_OPERATION
+5	operation associated with a schedule symbol is schedule creation from diagram.
+	#define SCHEDULE_SYMBOL
+6	operation associated with a job symbol creation from diagram.
+	#define JOB_SYMBOL
+7	operation associated with a fault job selector initiated from action
+	#define FAULT_SYMBOL
+8	[used internally - will never be output in this interface]
+	#define COMPONENT_SYMBOL
+9	operation associated with modifying a DPA attribute.
+	#define MODIFY_DPA_ATTRIBUTE
+
+It is expected that all operations are shown on the PDA (otherwise there will be missing operations which are fairly easy to spot because of a gap in the Item Number, which possibly may lead to confusion/mistrust of what they are seeing). However, only operations types 0 (plant) and 2 (documents) should be updateable by the Field Engineers. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Location" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The location of the plant item to perform the operation on e.g. "High Street".
+NOTES:
+	For operations not performed on plant items (e.g. a Permit to Work placed on the background diagram; textual operations (types 3 and 4)), this field by default is blank (the user has the facility to enter free form text if they wish). 
+</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CircuitDetails" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A human readable description of the plant item e.g. "Oil Switch towards Balfour Place". It is used to identify the plant item within the 'Location'.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DisplayedCircuitDetails" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The circuit details to show on the PDA if you wish the PDA to show exactly what is being shown in the NMS system.
+On the NMS system, the Operations Switching Log which shows all the operations has columns for the 'Location' and 'Circuit Details'. The Location column is a straight display of a column in the database (OPERATIONS.SUBSTATION_NAME). However, the 'Circuit Details' is built up from various sources, and it's contents depends on the OperationType. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Action" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The action to perform e.g. Open, Permit For Work</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DisplayedState" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The state of the operation to be shown to the user e.g. Instructed, Issued. This may be localised.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="State" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The state of the operation as seen by the system.  The possible values are a mixture of hard-coded states and user-defined states. The hard-coded states will never be localised.
+The hard-coded states (that can appear on the interface to a MFS) are:
+        Intended
+	Applicable for an operation in a planned job: the operation has been approved (but not yet instructed)
+        Proposed
+	The Control Engineer is proposing the operation. This has to be sent to the MFS, even though the Control Engineer is just 'thinking' about it because theoretically, the CE could propose some operations, and then instruct some below it. If the proposed operations were not sent down, there would be a gap in the Item numbering which will look strange.
+        Instructed
+	The Control Engineer has instructed a Field Engineer to perform the operation.
+        Confirmed
+	A Field Engineer has confirmed the operation has taken place.
+        Aborted
+	A Field Engineer has aborted the action.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDetails" type="DocumentDetailsType" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only applicable for document operation types (OperationType = 2).
+Holds the details of the document.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Comments associated with the operation.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InstructUserId" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only applicable if the operation has been instructed.
+User Id of Field Engineer instructed to perform this action.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InstructUserName" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only applicable if the operation has been instructed.
+Name of the Field Engineer instructed to perform this action.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InstructTimestamp" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only applicable if the operation has been instructed.
+The datetime the instruction was given.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConfirmUserId" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only applicable if the operation has been confirmed.
+User Id of Field Engineer who actually performed this action.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConfirmUserName" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only applicable if the operation has been confirmed.
+Name of the Field Engineer who actually performed this action.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConfirmTimestamp" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only applicable if the operation has been confirmed.
+The datetime the action was performed.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AbortTimestamp" type="xs:dateTime" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Only applicable if the operation has been aborted.
+The datetime the action was aborted.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ComponentAlias" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The alias of the component associated with the operation.</xs:documentation>
+        </xs:annotation>
+      </xs:element>      
+      <xs:element name="ComponentName" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The name of the point.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsTele" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A telecontrol operation (Y or element does not exist).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SafetyPrecaution" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Alpha character(s) to idenfity the operation e.g. A, B, C, AA, ZZ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FGColour" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Contains RGB values for the formatting of the operation foreground colour
+                            Format of this will be FGRed,FGGreen,FGBlue</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BGColour" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Contains RGB values for the formatting of the operation background colour
+                            Format of this will be BGRed,BGGreen,BGBlue</xs:documentation>
+        </xs:annotation>
+      </xs:element>            
+      <xs:element name="mDroverSpecific">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="OperationDisplayText" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>The display name for an operation on the MDT.
+For now, this will just be the 'Location' if it's not blank, otherwise it will be the 'CircuitDetails' if it's not blank, otherwise it will be the Action.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="OperationSummary">
+              <xs:annotation>
+                <xs:documentation>A description of the operation.Format of this will be:
+	ItemNumberString	DisplayedState. Location. DisplayedCircuitDetails. Action
+e.g.
+	2.5.16
+	Instructed. Main Street. Oil Switch towards Balfour Place. Open
+This summary line tries to emulate ENMAC's Operations Switching Log as closely as possible.</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="JobFieldOperativesArrayType">
+    <xs:sequence>
+      <xs:element name="Item" type="JobFieldOperativesType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OperationArrayType">
+    <xs:sequence>
+      <xs:element name="Item" type="OperationDetailsType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="JobTextDetailType">
+    <xs:all>
+      <xs:element name="Text" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The description of this text. 
+Example: comment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TextIndex" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The index of this text. 
+Example: 164</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TextType" type="xs:integer" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The type of this text. 
+Example: 3</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="JobTextArrayType">
+    <xs:sequence>
+      <xs:element name="Item" type="JobTextDetailType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProtectionDeviceTripType">
+        <xs:choice>
+            <xs:element name="CreationDate" type="xs:dateTime" />
+	    <xs:element name="ReceivedDate" type="xs:dateTime" />
+        </xs:choice>
+    </xs:complexType>
+  <xs:complexType name="ProtectionDeviceTripArrayType">
+        <xs:sequence>
+            <xs:element name="Item" type="ProtectionDeviceTripType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CustomerMeterType">
+        <xs:all>
+            <xs:element name="MeterNumber" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+  <xs:complexType name="CustomerMeterArrayType">
+        <xs:sequence>
+            <xs:element name="Item" type="CustomerMeterType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="mDroverJobBusinessRules">
+        <xs:all>
+            <xs:element name="JobScreenLayoutID" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The layout to use for the Job when displaying the job on the MDT.
+This will be hard-coded to be: GE_TCS.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="JobStatusFlowID" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The status flow to be used to mange this job in the field.
+This will be hard-coded to be: GE_TCS</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="JobDisplayOrder" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>How to order the job in any list. 
+This will be set to the creation time of the incident, formatted as yyyymmddhhmmss</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="JobType" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Defines the high level type of work that will be used to determine ordering of jobs and differentiate how the system will behave regarding that job.  This will be hard-coded to be: SP or LV</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+<xs:complexType name="FaultReportDetailsType">
+	<xs:all>
+		 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>
+		 <xs:element name="IncidentRef" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportType" type="xs:string" minOccurs="1"/>
+		 <xs:element name="SiFlag" type="xs:integer" minOccurs="1"/>
+		 <xs:element name="ReportOpComplete" type="xs:integer" minOccurs="1"/>
+		 <xs:element name="ReportRegComplete" type="xs:integer" minOccurs="1"/>
+		 <xs:element name="ReportUserCompletedDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportRegCompletedDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportCreationDate" type="xs:string" minOccurs="1"/>
+		 <xs:element name="ReportReceivedDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportStartDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportPlannedStartDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportPlannedEndDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ExclusionFlag" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="Voltage" type="xs:string" minOccurs="0"/>
+		 <xs:element name="VoltageDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="VoltageGroup" type="xs:string" minOccurs="0"/>
+		 <xs:element name="VoltageGroupDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="JobNumber" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ControlReference" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ControlEngineer" type="xs:string" minOccurs="0"/>
+		 <xs:element name="CompletionEngineer" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReadingType" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReadingTypeDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="SopRef" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportCml" type="xs:float" minOccurs="0"/>
+		 <xs:element name="ReportCi" type="xs:float" minOccurs="0"/>
+		 <xs:element name="ReportRi" type="xs:float" minOccurs="0"/>
+		 <xs:element name="MainEquipment" type="xs:string" minOccurs="0"/>
+		 <xs:element name="MainEquipmentDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails1" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails1Desc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails2" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails2Desc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails3" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails3Desc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails4" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails4Desc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails5" type="xs:string" minOccurs="0"/>
+		 <xs:element name="EquipmentDetails5Desc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ManufacturedYear" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Manufacturer" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ManufacturerDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ManufacturerRef" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ServiceFaultFlag" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="FuseOperation" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FuseOperationDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FuseSizeBlown" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FuseSizeReplaced" type="xs:string" minOccurs="0"/>
+		 <xs:element name="LoadAfterReplacement" type="xs:string" minOccurs="0"/>
+		 <xs:element name="NetworkType" type="xs:string" minOccurs="0"/>
+		 <xs:element name="NetworkTypeDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReplacementFlag" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="LvConnectFlag" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="AutomationCiCount" type="xs:float" minOccurs="0"/>
+		 <xs:element name="AutomationOperation" type="xs:string" minOccurs="0"/>
+		 <xs:element name="AutomationOperationDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="AutomationFailure" type="xs:string" minOccurs="0"/>
+		 <xs:element name="AutomationFailureDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="AutomationText" type="xs:string" minOccurs="0"/>
+		 <xs:element name="DelayText" type="xs:string" minOccurs="0"/>
+		 <xs:element name="DelayCode" type="xs:string" minOccurs="0"/>
+		 <xs:element name="DelayDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="DelayDuration" type="xs:float" minOccurs="0"/>
+		 <xs:element name="InjuryFlag" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="NetworkAbnormalFlag" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="OverheadFlag" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="BusinessStream" type="xs:string" minOccurs="0"/>
+		 <xs:element name="BusinessStreamDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="LinePatrolReq" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="LinePatrolJobRef" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ResourceComment" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportDescription" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ThirdPartyDamage" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="TpdDamageDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="TpdDamageMethod" type="xs:string" minOccurs="0"/>
+		 <xs:element name="TpdDamageMethodDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="AssociatedReportRef" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FatalityFlag" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="GridReference" type="xs:string" minOccurs="0"/>
+		 <xs:element name="LocalOffice" type="xs:string" minOccurs="0"/>
+		 <xs:element name="LocationText" type="xs:string" minOccurs="0"/>
+		 <xs:element name="AssetKey" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Locality" type="xs:string" minOccurs="0"/>
+		 <xs:element name="CircuitMonitoringRef" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ComponentGroup" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ComponentGroupDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Component" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ComponentDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Substation" type="xs:string" minOccurs="0"/>
+		 <xs:element name="SubstationRef" type="xs:string" minOccurs="0"/>
+		 <xs:element name="NoOfFeeders" type="xs:integer" minOccurs="0"/>
+		 <xs:element name="FeederName" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FeederRef" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Transformer" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Section" type="xs:string" minOccurs="0"/>
+		 <xs:element name="SecondarySub" type="xs:string" minOccurs="0"/>
+		 <xs:element name="SecondarySubAlias" type="xs:string" minOccurs="0"/>                                                                     
+		 <xs:element name="SecondaryFeeder" type="xs:string" minOccurs="0"/>
+		 <xs:element name="MainCircuitCode" type="xs:string" minOccurs="0"/>                                                                     
+		 <xs:element name="MainCircuitCodeDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FirstAutoIsolPoint" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FirstAutoIsolPointDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="NearAutoIsolPoint" type="xs:string" minOccurs="0"/>
+		 <xs:element name="NearAutoIsolPointDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="TracePoint" type="xs:string" minOccurs="0"/>                                                                     
+		 <xs:element name="CauseGroup" type="xs:string" minOccurs="0"/>
+		 <xs:element name="CauseGroupDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Cause" type="xs:string" minOccurs="0"/>
+		 <xs:element name="CauseDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="SecondaryCauseGroup" type="xs:string" minOccurs="0"/>
+		 <xs:element name="SecondaryCauseGroupDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="SecondaryCause" type="xs:string" minOccurs="0"/>
+		 <xs:element name="SecondaryCauseDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ReportComment" type="xs:string" minOccurs="0"/>
+		 <xs:element name="MalOperationReason" type="xs:string" minOccurs="0"/>
+		 <xs:element name="MalOperationReasonDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="PlannedReason" type="xs:string" minOccurs="0"/>
+		 <xs:element name="PlannedReasonDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="PartyResponsible" type="xs:string" minOccurs="0"/>
+		 <xs:element name="PartyResponsibleDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Status" type="xs:integer" minOccurs="1"/>
+		 <xs:element name="FirstDispatchedEngineer" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FirstOpOnSite" type="xs:string" minOccurs="0"/>
+		 <xs:element name="OtherEngineer1" type="xs:string" minOccurs="0"/>
+		 <xs:element name="OtherEngineer2" type="xs:string" minOccurs="0"/>
+		 <xs:element name="InterruptionType" type="xs:string" minOccurs="0"/>
+		 <xs:element name="InterruptionTypeDesc" type="xs:string" minOccurs="0"/>
+		 <xs:element name="InterruptionDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FinalRestDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="DispatchDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="ArrivalDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FaultFindTime" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FirstOperationTime" type="xs:string" minOccurs="0"/>
+		 <xs:element name="RepairCompletionTime" type="xs:string" minOccurs="0"/>
+		 <xs:element name="OperatingZone" type="xs:string" minOccurs="0"/>
+		 <xs:element name="FirstRestDate" type="xs:string" minOccurs="0"/>
+		 <xs:element name="Duration" type="xs:string" minOccurs="0"/>
+		 <xs:element name="IncCategoryId" type="xs:string" minOccurs="0"/>  
+		 <xs:element name="IncCategoryDesc" type="xs:string" minOccurs="0"/>                                                                      
+		 <xs:element name="ReportClearanceList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all>
+															 <xs:element name="ClearanceMethod" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ClearanceMethodDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ClearanceNumber" type="xs:integer" minOccurs="1"/>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>                                                                                                                         
+															 <xs:element name="Voltage" type="xs:string" minOccurs="0"/>
+															 <xs:element name="VoltageDesc" type="xs:string" minOccurs="0"/>                                                                                                                         
+														 </xs:all>
+												</xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>
+		 <xs:element name="ReportDamagedComponentsList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>
+															 <xs:element name="ComponentNumber" type="xs:integer" minOccurs="1"/>
+															 <xs:element name="DamagedComponent" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DamagedComponentDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LocationId" type="xs:string" minOccurs="0"/>
+															 <xs:element name="Identifier" type="xs:string" minOccurs="0"/>
+															 <xs:element name="TypeCode" type="xs:string" minOccurs="0"/>
+															 <xs:element name="TypeCodeDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ConditionCode" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ConditionCodeDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ActionTaken" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ActionTakenDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="FaultSide" type="xs:string" minOccurs="0"/>
+															 <xs:element name="FaultSideDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="Phase" type="xs:string" minOccurs="0"/>
+															 <xs:element name="PhaseDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="FollowUpRepairRequired" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="RepairBy" type="xs:string" minOccurs="0"/>
+															 <xs:element name="RepairByDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="CustomerCanBeCharged" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="CustomerChargeReference" type="xs:string" minOccurs="0"/>
+														 </xs:all>
+												 </xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>                                        
+		 <xs:element name="RestorationStagesList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>
+															 <xs:element name="StageNo" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="IncidentRef" type="xs:string" minOccurs="0"/>
+															 <xs:element name="InterruptionTime" type="xs:string" minOccurs="1"/>
+															 <xs:element name="RestorationDate" type="xs:string" minOccurs="1"/>
+															 <xs:element name="ClockStopDate" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ClockStartDate" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ClockStopReason" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ClockStopReasonDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeviceOpened" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeviceOpenedDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeviceOpenedUserRef" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeviceClosed" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeviceClosedDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeviceClosedUserRef" type="xs:string" minOccurs="0"/>
+															 <xs:element name="Operator" type="xs:string" minOccurs="1"/>
+															 <xs:element name="Phases" type="xs:string" minOccurs="0"/>
+															 <xs:element name="PhasesDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="NumAffected" type="xs:float" minOccurs="0"/>
+															 <xs:element name="Reinterruption" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="TempRestoration" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="ShortInterruption" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="StageCml" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="Duration" type="xs:string" minOccurs="0"/>
+															 <xs:element name="RestorationMethod" type="xs:string" minOccurs="0"/>
+															 <xs:element name="RestorationMethodDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="NetworkSweep" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="AlternativeSupply" type="xs:string" minOccurs="0"/>
+															 <xs:element name="AlternativeSupplyDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ForceMajeure" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="Locality" type="xs:string" minOccurs="0"/>
+															 <xs:element name="RestDelayReason" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LegNo" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ProtectionOperatedOk" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="OperationRestriction" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="RestorationType" type="xs:string" minOccurs="0"/>
+															 <xs:element name="RestorationTypeDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="AutomationFlag" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="Status" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="LivePrimaryRef" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LivePrimaryFeederName" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LivePrimaryCmr" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeadPrimaryRef" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeadPrimaryFeederName" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeadPrimaryCmr" type="xs:string" minOccurs="0"/>    
+															 <xs:element name="UserDefLookup1" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup1Desc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup2" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup2Desc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup3" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup3Desc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup4" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup4Desc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup5" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup5Desc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup6" type="xs:string" minOccurs="0"/>
+															 <xs:element name="UserDefLookup6Desc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeadIncLogCatId" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeadIncLogCatDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeadIncLogTypeId" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeadIncLogTypeDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeadIncLogComment" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LiveIncLogCatId" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LiveIncLogCatDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LiveIncLogTypeId" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LiveIncLogTypeDesc" type="xs:string" minOccurs="0"/>
+															 <xs:element name="LiveIncLogComment" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeviceOpenSwitchLog" type="xs:string" minOccurs="0"/>
+															 <xs:element name="DeviceClosedSwitchLog" type="xs:string" minOccurs="0"/>                                                                                       
+														 </xs:all>
+												 </xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>
+		 <xs:element name="ReportDynamicFieldsList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all>                                                                                                                         
+															 <xs:element name="DynamicFieldName" type="xs:string" minOccurs="1"/>
+															 <xs:element name="DynamicFieldValue" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>
+														 </xs:all>
+												 </xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>                                                                            
+		 <xs:element name="RestorationAffectedTransformersList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all>                                                                                                                         
+															 <xs:element name="ComponentAlias" type="xs:string" minOccurs="0"/>
+															 <xs:element name="StageNo" type="xs:string" minOccurs="0"/>
+															 <xs:element name="TransformerName" type="xs:string" minOccurs="0"/>
+															 <xs:element name="TransformerNumber" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>
+														 </xs:all>
+												 </xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>  
+		 <xs:element name="ReportLocationsList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all> 
+															 <xs:element name="GpsLatitude" type="xs:string" minOccurs="0"/>
+															 <xs:element name="GpsLongitude" type="xs:string" minOccurs="0"/>                                                   
+															 <xs:element name="Identifier" type="xs:string" minOccurs="0"/>                                                  
+															 <xs:element name="LocationId" type="xs:string" minOccurs="1"/>
+															 <xs:element name="LocationNo" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="Name" type="xs:string" minOccurs="0"/>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>                                                                                                                         
+															 <xs:element name="ResourceComment" type="xs:string" minOccurs="0"/>
+																																													  
+														 </xs:all>
+												 </xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>
+		 <xs:element name="RestorationCustomerList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>
+															 <xs:element name="StageNo" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="ProNumber" type="xs:string" minOccurs="1"/>
+															 <xs:element name="CustomerNo" type="xs:string" minOccurs="1"/> 
+															 <xs:element name="ComponentAlias" type="xs:string" minOccurs="1"/>
+															 <xs:element name="ComponentUserRef" type="xs:string" minOccurs="0"/>
+															 <xs:element name="FeederNo" type="xs:string" minOccurs="0"/>
+															 <xs:element name="Phase" type="xs:string" minOccurs="0"/>
+															 <xs:element name="MeterRef" type="xs:string" minOccurs="0"/>                                                                                                                   
+														 </xs:all>
+												</xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>
+		 <xs:element name="RestorationComponentList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>
+															 <xs:element name="StageNo" type="xs:integer" minOccurs="0"/>
+															 <xs:element name="ComponentAlias" type="xs:string" minOccurs="1"/>
+															 <xs:element name="ComponentUserRef" type="xs:string" minOccurs="0"/>                                                                                                                  
+														 </xs:all>
+												</xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>
+		 <xs:element name="ReportCustomerList" nillable="true" minOccurs="0">
+		 <xs:complexType>
+			 <xs:sequence>
+				 <xs:element name="Item" maxOccurs="unbounded">
+						 <xs:complexType>
+														 <xs:all>
+															 <xs:element name="ReportRef" type="xs:string" minOccurs="1"/>
+															 <xs:element name="ProNumber" type="xs:string" minOccurs="1"/>
+															 <xs:element name="CustomerNo" type="xs:string" minOccurs="1"/> 
+															 <xs:element name="ComponentAlias" type="xs:string" minOccurs="1"/>
+															 <xs:element name="ComponentUserRef" type="xs:string" minOccurs="0"/>
+															 <xs:element name="FeederNo" type="xs:string" minOccurs="0"/>
+															 <xs:element name="Phase" type="xs:string" minOccurs="0"/>
+															 <xs:element name="MeterRef" type="xs:string" minOccurs="0"/>                                                                                                                   
+														 </xs:all>
+												 </xs:complexType>
+										 </xs:element>
+								 </xs:sequence>
+						 </xs:complexType>
+				 </xs:element>    
+	</xs:all>
+</xs:complexType>
+ <xs:complexType name="ResourcesArrayType">
+    <xs:sequence>
+      <xs:element name="Item" type="ResourcesType" minOccurs="0" maxOccurs="20"/>
+    </xs:sequence>
+ </xs:complexType>
+ <xs:complexType name="ResourcesType">
+	<xs:all>
+		<xs:element name="ResourceSurname" type="xs:string"  />
+		<xs:element name="ResourceForename" type="xs:string" />
+		<xs:element name="ResourcePMRNumber" type="xs:string" minOccurs="0" />
+		<xs:element name="ResourceId" type="xs:string" />
+		<xs:element name="ResourcePersonnelNo" type="xs:string" minOccurs="0" />
+	</xs:all>
+</xs:complexType>
+    <xs:complexType name="TCSJobDetailsType">
+        <xs:all>
+            <xs:element name="TCSJobHeader" type="TCSJobHeaderType" />
+            <xs:element name="FaultReportDetails" type="FaultReportDetailsType" minOccurs="0" />
+            <xs:element name="Calls" nillable="true" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+						<xs:element name="Item" maxOccurs="15">
+							<xs:complexType>
+								<xs:all>
+                                	<xs:element name="CallReference" type="xs:string" />
+                                    <xs:element name="CriticalInformation" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CallerTitle" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CallerInitials" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CallerSurname" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CallerPhoneNumber" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="PremiseName" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="PremiseNumber" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="Street" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="Area" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="TownName" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="Postcode" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="HasCriticalInfo" type="xs:integer" />
+                                    <xs:element name="IsSensitive" type="xs:integer" />
+                                    <xs:element name="CustomerTitle" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CustomerInitials" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CustomerSurname" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CustomerPhoneNumbers" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CallCategory" type="xs:string" />
+				    <xs:element name="CustomerHazard" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerDirections" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerLVFeeder" type="xs:string" nillable="true" minOccurs="0"/>
+				    <xs:element name="CustomerMeter" type="CustomerMeterArrayType" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerNMI" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerGPSEasting" type="xs:double" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerGPSNorthing" type="xs:double" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerRemarks" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerSupplyType" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerRetailStatus" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerNetworkStatus" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerRetailer" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="SensitiveCustomerAdditionalInfo" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerTransformerName" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerTransformerNumber" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CallCreationTime" type="xs:dateTime" />
+				    <xs:element name="CallFirstLoggedTime" type="xs:dateTime" />
+				    <xs:element name="CallLastUpdatedTime" type="xs:dateTime" />
+				    <xs:element name="CustomerCriticalInfo" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="MeterPhase" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="AppointmentStartDate" type="xs:dateTime" nillable="true" minOccurs="0" />
+				    <xs:element name="AppointmentEndDate" type="xs:dateTime" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerNo" type="xs:string" minOccurs="0" />
+				    <xs:element name="CustomerPropertyNo" type="xs:string" minOccurs="0" />
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+            <xs:element name="SensitiveCustomers" nillable="true" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+						<xs:element name="Item" maxOccurs="20">
+							<xs:complexType>
+								<xs:all>
+                                    <xs:element name="CustomerTitle" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CustomerInitials" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CustomerForenames" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CustomerSurname" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CustomerPhoneNumber" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="CustomerNo" type="xs:string" />
+                                    <xs:element name="CustomerPropertyNo" type="xs:string" />
+                                    <xs:element name="PremiseName" type="xs:string" minOccurs="0" />
+                                    <xs:element name="PremiseNumber" type="xs:string" minOccurs="0" />
+                                    <xs:element name="Street" type="xs:string" minOccurs="0" />
+                                    <xs:element name="Area" type="xs:string" minOccurs="0" />
+                                    <xs:element name="TownName" type="xs:string" minOccurs="0" />
+                                    <xs:element name="Postcode" type="xs:string" />
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		<xs:element name="Resources" type="ResourcesArrayType" minOccurs="0">
+			<xs:annotation>
+				<xs:documentation>The list of resources associated with the incident.</xs:documentation>
+			</xs:annotation>
+		</xs:element> 		
+	    <xs:element name="ScopeDetails" nillable="true" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                    	<xs:element name="Item" maxOccurs="unbounded">
+                        	<xs:complexType>
+								<xs:all>
+                                    <xs:element name="CompAlias" type="xs:string" minOccurs="0" />
+                                    <xs:element name="CompName"  type="xs:string" minOccurs="0" />
+                                    <xs:element name="FeederNo" type="xs:string" nillable="true" minOccurs="0" />
+                                    <xs:element name="NumCustomers" type="xs:string" minOccurs="0" />
+                                    <xs:element name="Phase" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="ProNumber" type="xs:string" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerGPSEasting" type="xs:double" nillable="true" minOccurs="0" />
+				    <xs:element name="CustomerGPSNorthing" type="xs:double" nillable="true" minOccurs="0" />
+                                    <xs:element name="State" type="xs:string" minOccurs="0" />
+				    <xs:element name="CustomerCalled" type="xs:boolean" nillable="true" minOccurs="0" maxOccurs="1" />
+				    <xs:element name="CustomerSensitive" type="xs:boolean" nillable="true" minOccurs="0" maxOccurs="1" />
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+            <xs:element name="Links" nillable="true" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Item" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="LinkText" type="xs:string" minOccurs="0" />
+                                    <xs:element name="LinkType" type="xs:integer" minOccurs="0" />
+                                </xs:all>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+	    <xs:element name="LogMessages" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Item" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="LoggedTime" type="xs:dateTime"/>
+                                    <xs:element name="ActualTime" type="xs:dateTime"/>
+                                    <xs:element name="Comment" type="xs:string" minOccurs="0"/>
+                                    <xs:element name="NumOnSupply" type="xs:integer" minOccurs="0"/>
+                                    <xs:element name="NumOffSupply" type="xs:integer" minOccurs="0"/>
+                                    <xs:element name="Category" type="xs:integer"/>
+                                    <xs:element name="SubCategory" type="xs:integer"/>
+                                    <xs:element name="ResourceSurname" type="xs:string" minOccurs="0"/>
+                                    <xs:element name="ResourceForename" type="xs:string" minOccurs="0"/>
+                                    <xs:element name="ResourcePMRNumber" type="xs:string" minOccurs="0"/>
+                                </xs:all>
+                            </xs:complexType>
+                        </xs:element>
+		    </xs:sequence>
+                </xs:complexType>
+	    </xs:element>			
+        </xs:all>
+    </xs:complexType>
+  <xs:complexType name="JobDetailsType">
+    <xs:all>
+      <xs:element name="JobFieldOperatives" type="JobFieldOperativesArrayType" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The list of job field operatives associated with the job.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JobHeader" type="JobHeaderType"/>
+      <xs:element name="FaultReportDetails" type="FaultReportDetailsType" minOccurs="0"/>
+      <xs:element name="Operations" type="OperationArrayType" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The list of operations associated with the job.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="OperationRenumberType">
+    <xs:all>
+      <xs:element name="OperationId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Id of operation to renumber.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NewItemNumber" type="OperationItemNumberType">
+        <xs:annotation>
+          <xs:documentation>New item number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ThirdPartyDetailsType">
+    <xs:all>
+      <xs:element name="Name" type="xs:string" nillable="true" minOccurs="0" />
+      <xs:element name="Address" type="xs:string" nillable="true" minOccurs="0" />
+      <xs:element name="Number" type="xs:string" nillable="true" minOccurs="0" />
+      <xs:element name="VehicleDetails" type="xs:string" nillable="true" minOccurs="0" />
+      <xs:element name="PoliceFireEventNo" type="xs:string" nillable="true" minOccurs="0" />
+      <xs:element name="CustAgreementNo" type="xs:string" nillable="true" minOccurs="0" />
+      <xs:element name="StatementAtSiteNo" type="xs:string" nillable="true" minOccurs="0" />
+      <xs:element name="Description" type="xs:string" nillable="true" minOccurs="0" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="JobParallelType">
+    <xs:all>
+      <xs:element name="CouplingPointDesc" type="xs:string" nillable="true" minOccurs="0">
+      </xs:element>
+      <xs:element name="NotificationTime" type="xs:string" nillable="true" minOccurs="0">
+      </xs:element>
+      <xs:element name="ParallelRequired" type="xs:int" nillable="true" minOccurs="0">
+      </xs:element>
+      <xs:element name="TransformerADesc" type="xs:string" nillable="true" minOccurs="0">
+      </xs:element>
+      <xs:element name="TransformerBDesc" type="xs:string" nillable="true" minOccurs="0">	
+      </xs:element>      
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="PhaseCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ABCN"/>
+      <xs:enumeration value="ABC"/>
+      <xs:enumeration value="ABN"/>
+      <xs:enumeration value="ACN"/>
+      <xs:enumeration value="BCN"/>
+      <xs:enumeration value="AB"/>
+      <xs:enumeration value="AC"/>
+      <xs:enumeration value="BC"/>
+      <xs:enumeration value="AN"/>
+      <xs:enumeration value="BN"/>
+      <xs:enumeration value="CN"/>
+      <xs:enumeration value="A"/>
+      <xs:enumeration value="B"/>
+      <xs:enumeration value="C"/>
+      <xs:enumeration value="N"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SinglePhaseCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="A"/>
+      <xs:enumeration value="B"/>
+      <xs:enumeration value="C"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

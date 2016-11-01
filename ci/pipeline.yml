@@ -9,8 +9,14 @@ jobs:
   plan:
   - get: source-code
     trigger: true
-  - task: package
-    privileged: true
-    file: source-code/ci/tasks/package.yml
-    params:
-      project: job-service
+  - aggregate:
+    - task: package-job-service
+      privileged: true
+      file: source-code/ci/tasks/package.yml
+      params:
+        project: job-service
+    - task: package-poweron-connect-service
+      privileged: true
+      file: source-code/ci/tasks/package.yml
+      params:
+        project: poweron-connect-service

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms"
+    targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="ResourceDispatchedSchema">
+    <xs:include schemaLocation="../../msg_headers.xsd" />
+    <xs:include schemaLocation="../../user_types.xsd" />
+    <xs:annotation>
+        <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : ResourceDispatched.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/in/oms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2006
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  11-07-2006	ME	43577	Changed LoggedTime to DispatchTime and added
+#*M					Comment element
+#*M  06-07-2006	ME	43577	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+    </xs:annotation>
+    <xs:element name="ResourceDispatched">
+        <xs:annotation>
+            <xs:documentation>Control room has requested to take the job back from a Field Engineer.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="ResourceDispatchedStc">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="MsgHeader" type="ToNmsMsgHeader">
+                                <xs:annotation>
+                                    <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="MsgBody">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="FromUser" type="UserIdentificationType" />
+                                        <xs:element name="IncidentReference" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>The number of the job to take back.
+Example: J-123-X </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DispatchTime" type="xs:dateTime" />
+                                        <xs:element name="ETA" type="xs:dateTime" />
+                                        <xs:element name="Comment" type="xs:string" />
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Yee Men Chen (GE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms" targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="MsgHeadersSchema">
+  <xs:annotation>
+    <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : msg_headers.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2005
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  04-07-2006	ME	43577	Added Product to ToNmsMsgHeader
+#*M  20-12-2005	SG	35971	Changed xs:int to xs:integer
+#*M		Yambay		
+#*M  09-12-2005	YMC	35971	Added ToNmsMsgHeader
+#*M  08-12-2005	YMC	35971	Annotated all fields. 
+#*M  07-12-2005	YMC	35971	All fields that potentially can be blank need 
+#*M				nillable="true" because the SOAPLite serialiser
+#*M				'intelligently' outputs xsi:null="1" 
+#*M				for blank elements.
+#*M  06-12-2005	YMC	35971	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ToMfsMsgHeader">
+    <xs:all>
+      <xs:element name="MsgId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>An identifier for the message. This is guaranteed to be unique from a particular ENMAC group. 
+Example :	650000000000123456</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NmsEnvironment" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The environment the NMS system is running in. This is typically used to distinguish between a live system and a test system such that the destination can either accept or reject the message. In a multiple group ENMAC system, this should be the same for all groups. There are no hard-coded environments that the code will check for i.e. this field is free format.
+Example : Live</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NmsGroupName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The ENMAC group that the message was sent from.
+Example: Wales</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Timestamp" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Timestamp of the message. 
+Example : 2005-12-05T08:30:44.000000</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeToLive" type="xs:duration" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Time To Live (TTL) for the message i.e. how long do we allow the system to deliver the message to the PDA. The timer should start from the time specified in the Time field. This field should ideally be used by both ENMAC and the MFS. 
+Example: PT15H
+is a period of 15 hours.
+If you don't want a timeout i.e. you want the system to attempt to send the message forever until sent, then specify "PT0S" i.e. 0 seconds.
+
+NOTE : mDrover has it's own TimeToLive in the mDroverSpecific section.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShortDescription" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A short description for the message. Typically used for debugging purposes.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LongDescription" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A long description for the message. Typically used for debugging purposes. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TestScenario" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The test scenario to run at the destination. Typically used for automated testing, especially to simulate failures.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="mDroverSpecific">
+        <xs:annotation>
+          <xs:documentation>Information required to drive the mDrover MFS.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="MessageExternalSourceEnv" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>The identifier of the external source environment that the message has originated from.  EG: CE_MW_TEST, CE_MW_PROD.  This will be used by MDS to determine if the external system is authorised to send a message to the mDrover server instance.
+
+NOTE : the Interaction Server allows a list of valid authorised sources.
+
+Yambay have requested the following format:
+	NmsEnvironment-NmsGroupName
+e.g.
+	Live-Wales</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="MessageMACHSubSystem" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>The MACH Interaction Server Sub-system that the message relates to. This will always be "mdg" (mdrover).
+This will always be "mdg" (mdrover).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="TimeToLive" type="xs:integer">
+              <xs:annotation>
+                <xs:documentation>The amount of time (in seconds) that may elapse after the MACH Interaction Server has started attempting to dispatch a Job before it gives up and informs the external interface. 
+Example : 120
+which specifies a TTL of 120 seconds.
+If you don't want a timeout i.e. you want the system to attempt to send the message forever until sent, then specify "0".</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ToNmsMsgHeader">
+    <xs:all>
+      <xs:element name="MsgId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>A unique identifier for the message. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+            <xs:element name="Product" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>An identifier for the Mobile product this message is destined for
+Example :	DMS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Timestamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Timestamp of the message. 
+Example : 2005-12-05T08:30:44.000000</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShortDescription" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A short description for the message. Typically used for debugging purposes.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LongDescription" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A long description for the message. Typically used for debugging purposes. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TestScenario" type="xs:string" nillable="true" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The test scenario to run at the destination. Typically used for automated testing, especially to simulate failures.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+            <xs:element name="TxnSource" minOccurs="0" type="xs:integer">
+        <xs:annotation>
+          <xs:documentation>A number identifying the originator for the cause of this message. The numbers are totally arbitrary, except for 0 which is always ENMAC. If this field is not specified, it will be set to 0 i.e. the source is like it came from within ENMAC.
+mDrover mapping : hard code to 0 </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

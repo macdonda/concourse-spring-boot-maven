@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.ge.com/energy/enmac/mobile/nms"
+    targetNamespace="http://www.ge.com/energy/enmac/mobile/nms" id="ScopeDetailsChangedSchema">
+    <xs:include schemaLocation="../../msg_headers.xsd" />
+    <xs:include schemaLocation="../../job_types.xsd" />
+    <xs:include schemaLocation="../../user_types.xsd" />
+    <xs:annotation>
+        <xs:documentation>
+#*M-----------------------------------------------------------------------------
+#*M                             MODULE HEADER 
+#*M-----------------------------------------------------------------------------
+#*M
+#*M        File Name       : ScopeDetailsChanged.xsd
+#*M  
+#*M        Path            : /users/bin/schemas/mobile/out/oms
+#*M  
+#*M        Reference       : P006-00-01
+#*M
+#*M        (C) Copyright GE Network Reliability Services, 2007
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                         MODULE CHANGE HISTORY
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  DATE       BY      CN      DESCRIPTION
+#*M  ----       --      --      -----------
+#*M  26-08-2016 DC      255896  Added CallCreationTime, CustomerNo and 
+#*M                             CustomerPropertyNo to Calls.
+#*M                             Added CustomerNo, CustomerPropertyNo,
+#*M                             PremiseName, PremiseNumber, Street,
+#*M                             Area, TownName and Postcode to 
+#*M                             SensitiveCustomers.
+#*M  28-05-2012 TA      155456  Added Network Status.
+#*M  19-09-2011 AAFT    140200  Added Calls and SensitiveCustomers structure.
+#*M  21-06-2011 CR      134967  Added CustomerCalled and CustomerSensitive to 
+#*M                             ScopeDetails
+#*M  14-04-2011	MR	131459	Added property number and GPS coordinates
+#*M  14-10-2007	AAFT	54379	Initial version
+#*M
+#*M-----------------------------------------------------------------------------
+#*M                          MODULE DESCRIPTION
+#*M-----------------------------------------------------------------------------
+#*M
+#*M  
+#*M
+#*M-----------------------------------------------------------------------------
+    </xs:documentation>
+    </xs:annotation>
+    <xs:element name="ScopeDetailsChanged">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="ScopeDetailsChangedStc">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="MsgHeader" type="ToMfsMsgHeader">
+                                <xs:annotation>
+                                    <xs:documentation>Standard message header to a Mobile Field System.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="MsgBody">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="ToUser" type="UserIdentificationType">
+                                            <xs:annotation>
+                                                <xs:documentation>Who the incident is being updated to.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+					<xs:element name="IncidentRef" type="xs:string" maxOccurs="1" />
+					<xs:element name="OperationType" type="xs:string" maxOccurs="1" />
+					<xs:element name="ScopeDetails" minOccurs="0">
+                					<xs:complexType>
+                					    <xs:sequence>							    
+                    						<xs:element name="Item" maxOccurs="unbounded">
+                        						<xs:complexType>
+													<xs:all>													
+                                					    <xs:element name="CompAlias" type="xs:string" minOccurs="0" />
+                                					    <xs:element name="CompName"  type="xs:string" minOccurs="0" />
+                                					    <xs:element name="FeederNo" type="xs:string" nillable="true" minOccurs="0" />
+                                					    <xs:element name="NumCustomers" type="xs:string" minOccurs="0" />
+                                					    <xs:element name="Phase" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="ProNumber" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerGPSEasting" type="xs:double" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerGPSNorthing" type="xs:double" nillable="true" minOccurs="0" />
+                                					    <xs:element name="State" type="xs:string" minOccurs="0" />
+                                					    <xs:element name="CustomerCalled" type="xs:boolean" nillable="true" minOccurs="0" maxOccurs="1" />
+                                					    <xs:element name="CustomerSensitive" type="xs:boolean" nillable="true" minOccurs="0" maxOccurs="1" />
+													</xs:all>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+					<xs:element name="Calls" nillable="true" minOccurs="0">
+							<xs:complexType>
+							    <xs:sequence>
+								<xs:element name="Item" maxOccurs="15">
+									<xs:complexType>
+										                        <xs:all>
+									    <xs:element name="CallReference" type="xs:string" />
+		                                			    <xs:element name="CriticalInformation" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="CallerTitle" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="CallerInitials" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="CallerSurname" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="CallerPhoneNumber" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="PremiseName" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="PremiseNumber" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="Street" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="Area" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="TownName" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="Postcode" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="HasCriticalInfo" type="xs:integer" />
+		                                			    <xs:element name="IsSensitive" type="xs:integer" />
+		                                			    <xs:element name="CustomerTitle" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="CustomerInitials" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="CustomerSurname" type="xs:string" nillable="true" minOccurs="0" />
+		                                			    <xs:element name="CustomerPhoneNumbers" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CallCategory" type="xs:string" />
+									    <xs:element name="CustomerHazard" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerDirections" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerLVFeeder" type="xs:string" nillable="true" minOccurs="0"/>
+									    <xs:element name="CustomerMeter" type="CustomerMeterArrayType" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerNMI" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerGPSEasting" type="xs:double" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerGPSNorthing" type="xs:double" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerRemarks" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerSupplyType" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerRetailStatus" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerNetworkStatus" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerRetailer" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="SensitiveCustomerAdditionalInfo" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerTransformerName" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerTransformerNumber" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="CallCreationTime" type="xs:dateTime" />
+									    <xs:element name="CallFirstLoggedTime" type="xs:dateTime" />
+									    <xs:element name="CallLastUpdatedTime" type="xs:dateTime" />
+									    <xs:element name="CustomerCriticalInfo" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="MeterPhase" type="xs:string" nillable="true" minOccurs="0" />
+									    <xs:element name="AppointmentStartDate" type="xs:dateTime" nillable="true" minOccurs="0" />
+									    <xs:element name="AppointmentEndDate" type="xs:dateTime" nillable="true" minOccurs="0" />
+									    <xs:element name="CustomerNo" type="xs:string" minOccurs="0" />
+									    <xs:element name="CustomerPropertyNo" type="xs:string" minOccurs="0" />
+										                        </xs:all>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="SensitiveCustomers" nillable="true" minOccurs="0">
+					                <xs:complexType>
+							    <xs:sequence>
+								<xs:element name="Item" maxOccurs="20">
+									<xs:complexType>
+													<xs:all>
+									     <xs:element name="CustomerTitle" type="xs:string" nillable="true" minOccurs="0" />
+									     <xs:element name="CustomerInitials" type="xs:string" nillable="true" minOccurs="0" />
+									     <xs:element name="CustomerForenames" type="xs:string" nillable="true" minOccurs="0" />
+									     <xs:element name="CustomerSurname" type="xs:string" nillable="true" minOccurs="0" />
+									     <xs:element name="CustomerPhoneNumber" type="xs:string" nillable="true" minOccurs="0" />
+									     <xs:element name="CustomerNo" type="xs:string" />
+									     <xs:element name="CustomerPropertyNo" type="xs:string" />
+									     <xs:element name="PremiseName" type="xs:string" minOccurs="0" />
+									     <xs:element name="PremiseNumber" type="xs:string" minOccurs="0" />
+									     <xs:element name="Street" type="xs:string" minOccurs="0" />
+									     <xs:element name="Area" type="xs:string" minOccurs="0" />
+									     <xs:element name="TownName" type="xs:string" minOccurs="0" />
+									     <xs:element name="Postcode" type="xs:string" />
+													</xs:all>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>			
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

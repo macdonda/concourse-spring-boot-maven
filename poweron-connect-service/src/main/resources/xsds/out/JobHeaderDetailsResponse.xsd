@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Steve Godding (Yambay) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--xs:include schemaLocation="JobHeaderDataTCS.xsd"/-->
+	<xs:element name="RequestJobHeaderDetailsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RequestJobHeaderDetailsResponseStc">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="Timestamp"/>
+							<xs:element name="JobNumber"/>
+							<xs:element name="JobInformation">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="IncidentComment" minOccurs="0"/>
+										<xs:element name="Priority" minOccurs="0"/>
+										<xs:element name="ProtectionDeviceId" minOccurs="0"/>
+										<xs:element name="ProtectionDeviceTripCountPeriod" minOccurs="0"/>
+										<xs:element name="ProtectionDeviceTripCount" minOccurs="0"/>
+										<xs:element name="ProtectionDeviceTrips" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+													<xs:element name="ProtectionDeviceTrip">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="TripTimestamp"/>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ProtectionDeviceName" minOccurs="0"/>
+										<xs:element name="ProtectionDeviceNorthing" minOccurs="0"/>
+										<xs:element name="ProtectionDeviceEasting" minOccurs="0"/>
+										<xs:element name="OperatingZone" minOccurs="0"/>
+										<xs:element name="HVFeeder" type="xs:string" minOccurs="0"/>
+										<xs:element name="HVFeederDescription" minOccurs="0"/>
+										<xs:element name="Calls" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+													<xs:element name="Call" maxOccurs="15">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CallReference" minOccurs="0"/>
+																<xs:element name="CriticalInformation" minOccurs="0"/>
+																<xs:element name="CallerName" minOccurs="0"/>
+																<xs:element name="CallerPhoneNumber" minOccurs="0"/>
+																<xs:element name="CallerCustomerName" minOccurs="0"/>
+																<xs:element name="CallerCustomerPhone" minOccurs="0"/>
+																<xs:element name="CallerAddress" minOccurs="0"/>
+																<xs:element name="HasCriticalInfo" minOccurs="0"/>
+																<xs:element name="CustomerCriticalInfoFlag" minOccurs="0"/>
+																<xs:element name="IsSensitive" minOccurs="0"/>
+																<xs:element name="CustomerSensitiveFlag" minOccurs="0"/>
+																<xs:element name="CustomerCriticalInfo" minOccurs="0"/>
+																<xs:element name="CustomerPremise" minOccurs="0"/>
+																<xs:element name="CustomerTransformer" minOccurs="0"/>
+																<xs:element name="CustomerLVFeeder" minOccurs="0"/>
+																<xs:element name="CallerRemarks" minOccurs="0"/>
+																<xs:element name="CallCategory" minOccurs="0"/>
+																<xs:element name="CustomerHazard" minOccurs="0"/>
+																<xs:element name="CustomerDirections" minOccurs="0"/>
+																<xs:element name="CustomerMeter" minOccurs="0"/>
+																<xs:element name="CustomerNMI" minOccurs="0"/>
+																<xs:element name="CustomerGPSLatitude" minOccurs="0"/>
+																<xs:element name="CustomerGPSLongitude" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="JobBusinessRules">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="GISDetails">
+											<xs:annotation>
+												<xs:documentation>This element should contain latitude then longitude concatenated with a comma in between e.g. -31.535543, 115.643345</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

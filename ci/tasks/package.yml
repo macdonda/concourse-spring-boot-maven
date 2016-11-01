@@ -12,4 +12,4 @@ inputs:
 run:
   path: source-code/ci/tasks/package.sh
 params:
-  project: job-service
+  project: override-in-plan

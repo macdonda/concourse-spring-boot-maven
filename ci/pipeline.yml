@@ -12,3 +12,5 @@ jobs:
   - task: package
     privileged: true
     file: source-code/ci/tasks/package.yml
+    params:
+      project: job-service

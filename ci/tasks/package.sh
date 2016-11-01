@@ -4,5 +4,5 @@ echo $project
 
 set -e -u -x
 
-cd source-code/
+cd source-code/$project
 ./mvnw package

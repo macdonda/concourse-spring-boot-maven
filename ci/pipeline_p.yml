@@ -1,0 +1,44 @@
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/macdonda/concourse-spring-boot-maven.git
+    branch: master
+jobs:
+
+- name: package-job-service
+  plan:
+  - get: source-code
+    trigger: true
+  - task: package
+    privileged: true
+    file: source-code/ci/tasks/package.yml
+    params:
+      project: job-service
+
+- name: package-poweron-connect-service
+  plan:
+  - get: source-code
+    trigger: true
+  - task: package
+    privileged: true
+    file: source-code/ci/tasks/package.yml
+    params:
+      project: poweron-connect-service
+
+- name: package-user-device-service
+  plan:
+  - get: source-code
+    trigger: true
+  - task: package-user-device-service
+    privileged: true
+    file: source-code/ci/tasks/package.yml
+    params:
+      project: user-device-service
+
+- name: integration-deploy
+  plan:
+  - get: source-code
+    passed: [package-job-service,package-poweron-connect-service]
+  - task: deploy
+    file: source-code/ci/tasks/list_directory.yml
